@@ -13,7 +13,7 @@ Treningssesongen 2026 er i gang, og vi har planlagt treningsdager for våre medl
 ## Treninger 2026
 
 **ATV & Sidevogn:**
-- Dag: Lørdager kl. 10:00–16:00
+- Dager: Lørdager kl. 11:00–14:00 (16:00) og torsdager kl. 17:00–20:00
 - Sted: Elgane bane
 
 **MX (Motocross):**

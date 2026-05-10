@@ -46,11 +46,6 @@
           <th>Dato</th>
           <th>Tid</th>
           <th>Gren</th>
-          {{ if not $compact }}
-          <th>Sikringsleder</th>
-          <th>Status</th>
-          <th>Merknad</th>
-          {{ end }}
         </tr>
       </thead>
       <tbody>
@@ -65,34 +60,6 @@
           <td data-label="Gren">
             <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
           </td>
-          {{ if not $compact }}
-          <td data-label="Sikringsleder">
-            {{ with .sikringsleder }}
-              {{ . }}
-            {{ else }}
-              <em style="color: var(--color-warning);">Trenger sikringsleder</em>
-            {{ end }}
-          </td>
-          <td data-label="Status">
-            {{ $statusClass := "status-badge" }}
-            {{ $statusText := .status }}
-            {{ if eq .status "bekreftet" }}
-              {{ $statusClass = "status-badge status-badge--bekreftet" }}
-              {{ $statusText = "Bekreftet" }}
-            {{ else if eq .status "avlyst" }}
-              {{ $statusClass = "status-badge status-badge--avlyst" }}
-              {{ $statusText = "Avlyst" }}
-            {{ else if eq .status "utsatt" }}
-              {{ $statusClass = "status-badge status-badge--utsatt" }}
-              {{ $statusText = "Utsatt" }}
-            {{ else if eq .status "trenger_sikringsleder" }}
-              {{ $statusClass = "status-badge status-badge--trenger_sikringsleder" }}
-              {{ $statusText = "Trenger sikringsleder" }}
-            {{ end }}
-            <span class="{{ $statusClass }}">{{ $statusText }}</span>
-          </td>
-          <td data-label="Merknad">{{ .merknad }}</td>
-          {{ end }}
         </tr>
         {{ end }}
       </tbody>

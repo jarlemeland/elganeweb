@@ -5,15 +5,13 @@ description: "Oversikt over kommende treninger med sikringsleder for Elgane Moto
 
 ## Treningsplan
 
-Oversikt over kommende treninger. Sikringsleder må være til stede under all trening.
-
-**Vil du bli sikringsleder?** [Les mer her](/nyheter/vi-trenger-sikringsledere/) eller [kontakt oss](/kontakt/).
+Oversikt over kommende treninger.
 
 {{< treningstabell >}}
 
 ### Faste treningsdager
 
-- **ATV & Sidevogn:** Lørdager kl. 10:00–16:00
+- **ATV & Sidevogn:** Lørdager kl. 11:00–14:00 (16:00) og torsdager kl. 17:00–20:00
 - **MX:** Søndager kl. 10:00–16:00
 - **Speedway:** Mandager og onsdager kl. 17:00–20:00
 

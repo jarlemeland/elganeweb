@@ -48,7 +48,7 @@ type: "kontakt"
 
 Du er velkommen til å komme på besøk på en treningsdag!
 
-- **ATV/Sidevogn:** Lørdager kl. 10:00–16:00
+- **ATV/Sidevogn:** Lørdager kl. 11:00–14:00 (16:00) og torsdager kl. 17:00–20:00
 - **MX:** Søndager kl. 10:00–16:00
 - **Speedway:** Mandager og onsdager kl. 17:00–20:00
 

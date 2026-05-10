@@ -3,8 +3,8 @@ title: "ATV & Sidevogn"
 description: "ATV og Sidevogn-seksjonen i Elgane Motorsykkelklubb. Cross-kjøring med ATV og sidevogn."
 discipline: "atv"
 color: "#3fb970"
-treningsdager: "Lørdager"
-treningstid: "10:00 – 16:00"
+treningsdager: "Lørdager og torsdager"
+treningstid: "Lør 11:00–14:00 (16:00) · Tor 17:00–20:00"
 sesong: "April – Oktober"
 kontaktperson: "[Navn]"
 kontaktepost: "[epost]"
@@ -43,8 +43,9 @@ Sidevogn-cross er lagkjøring hvor en fører styrer motorsykkelen og en passasje
 **Treningssesongen:**
 - Start: April
 - Slutt: September/oktober
-- Dag: Lørdager
-- Tid: 10:00–16:00
+- Dager: Lørdager og torsdager
+- Tid lørdager: 11:00–14:00 (16:00)
+- Tid torsdager: 17:00–20:00
 
 **Hva som trengs:**
 - Gyldig NMF-lisens
