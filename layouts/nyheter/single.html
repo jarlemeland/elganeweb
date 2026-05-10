@@ -14,7 +14,7 @@
           {{ range . }}
           {{ $slug := . | urlize }}
           {{ $class := "kategori-badge" }}
-          {{ if eq . "ATV & Sidecar" }}{{ $class = "kategori-badge kategori-badge--atv" }}
+          {{ if eq . "ATV & Sidevogn" }}{{ $class = "kategori-badge kategori-badge--atv" }}
           {{ else if eq . "MX" }}{{ $class = "kategori-badge kategori-badge--mx" }}
           {{ else if eq . "Speedway" }}{{ $class = "kategori-badge kategori-badge--speedway" }}
           {{ else if eq . "Arrangementer" }}{{ $class = "kategori-badge kategori-badge--arrangementer" }}

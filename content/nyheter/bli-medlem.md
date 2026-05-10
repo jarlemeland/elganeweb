@@ -12,7 +12,7 @@ Er du interessert i motorsport? Elgane Motorsykkelklubb ønsker nye medlemmer ve
 
 ## Våre grener
 
-- **ATV & Sidecar**: Spennende kjøring med firhjuling eller sidecar
+- **ATV & Sidevogn**: Spennende kjøring med firhjuling eller sidevogn
 - **MX (Motocross)**: Utfordrende motocrosskjøring for alle nivåer
 - **Speedway**: Hurtig og spektakulær speedwaykjøring
 

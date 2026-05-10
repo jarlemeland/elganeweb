@@ -256,7 +256,7 @@ This document defines the official color palette for the Elgane Motorsykkelklubb
 
 For color-coding motorsport branches (optional):
 
-### ATV & Sidecar
+### ATV & Sidevogn
 **Hex**: `#3fb970` (Elgane Green - primary)
 
 ### MX (Motocross)

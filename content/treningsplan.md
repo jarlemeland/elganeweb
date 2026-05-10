@@ -13,7 +13,7 @@ Oversikt over kommende treninger. Sikringsleder må være til stede under all tr
 
 ### Faste treningsdager
 
-- **ATV & Sidecar:** Lørdager kl. 10:00–16:00
+- **ATV & Sidevogn:** Lørdager kl. 10:00–16:00
 - **MX:** Søndager kl. 10:00–16:00
 - **Speedway:** Mandager og onsdager kl. 17:00–20:00
 

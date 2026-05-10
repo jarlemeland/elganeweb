@@ -1,6 +1,6 @@
 ---
-title: "ATV & Sidecar"
-description: "ATV og Sidecar-seksjonen i Elgane Motorsykkelklubb. Cross-kjøring med ATV og sidecar."
+title: "ATV & Sidevogn"
+description: "ATV og Sidevogn-seksjonen i Elgane Motorsykkelklubb. Cross-kjøring med ATV og sidevogn."
 discipline: "atv"
 color: "#3fb970"
 treningsdager: "Lørdager"
@@ -12,11 +12,11 @@ kontakttelefon: "[nummer]"
 image: ""
 ---
 
-## ATV og Sidecar hos Elgane
+## ATV og Sidevogn hos Elgane
 
-Velkommen til ATV- og Sidecar-seksjonen i Elgane Motorsykkelklubb!
+Velkommen til ATV- og Sidevogn-seksjonen i Elgane Motorsykkelklubb!
 
-Vi driver cross-kjøring med ATV (firhjuling/quad) og sidecar. Dette er spennende og utfordrende kjøring som kombinerer teknikk, fart og teamarbeid.
+Vi driver cross-kjøring med ATV (firhjuling/quad) og sidevogn. Dette er spennende og utfordrende kjøring som kombinerer teknikk, fart og teamarbeid.
 
 ## Hva er ATV Cross?
 
@@ -28,9 +28,9 @@ ATV-cross (også kalt quad-cross) er cross-kjøring med firhjuling. Kjøringen f
 - Både for hobby og konkurranse
 - Krever god balanse og teknikk
 
-## Hva er Sidecar Cross?
+## Hva er Sidevogn Cross?
 
-Sidecar-cross er lagkjøring hvor en fører styrer motorsykkelen og en passasjer fungerer som balansevekt. Sammen navigerer de seg gjennom banen i høy fart.
+Sidevogn-cross er lagkjøring hvor en fører styrer motorsykkelen og en passasjer fungerer som balansevekt. Sammen navigerer de seg gjennom banen i høy fart.
 
 **Egenskaper:**
 - Fører og passasjer jobber sammen
@@ -48,7 +48,7 @@ Sidecar-cross er lagkjøring hvor en fører styrer motorsykkelen og en passasjer
 
 **Hva som trengs:**
 - Gyldig NMF-lisens
-- Eget utstyr (ATV eller sidecar)
+- Eget utstyr (ATV eller sidevogn)
 - Sikkerhetsutstyr (se under)
 - Medlemskap i klubben
 
@@ -56,7 +56,7 @@ Sidecar-cross er lagkjøring hvor en fører styrer motorsykkelen og en passasjer
 
 ## Sikkerhetsutstyr
 
-Påkrevd sikkerhetsutstyr for ATV og Sidecar:
+Påkrevd sikkerhetsutstyr for ATV og Sidevogn:
 
 **Obligatorisk:**
 - Godkjent crosshjelm
@@ -74,7 +74,7 @@ Påkrevd sikkerhetsutstyr for ATV og Sidecar:
 
 ## Nybegynner?
 
-Ny i ATV- eller sidecar-cross? Velkommen!
+Ny i ATV- eller sidevogn-cross? Velkommen!
 
 **Vi tilbyr:**
 - Veiledning fra erfarne kjørere
@@ -113,7 +113,7 @@ Du bestemmer selv om du vil konkurrere eller bare trene for gøy!
 Ja! Kontakt oss for å avtale en prøvekjøring.
 
 **Trenger jeg egen maskin?**
-Ja, du må ha egen ATV eller sidecar. Vi hjelper gjerne med råd om kjøp.
+Ja, du må ha egen ATV eller sidevogn. Vi hjelper gjerne med råd om kjøp.
 
 **Hvor mye koster det?**
 Medlemskap + treningsavgift + lisens. Se [Om klubben](/om-klubben/) for priser.
@@ -124,7 +124,7 @@ Medlemskap + treningsavgift + lisens. Se [Om klubben](/om-klubben/) for priser.
 **Må jeg konkurrere?**
 Nei, mange kjører kun for trening og moro.
 
-## Kontakt ATV og Sidecar-ansvarlig
+## Kontakt ATV og Sidevogn-ansvarlig
 
 **[Navn på ansvarlig]**
 - Telefon: [nummer]
@@ -135,4 +135,4 @@ Eller bruk [kontaktskjemaet](/kontakt/) på nettsiden.
 ## Lenker
 
 - [NMF – Norges Motorsportforbund](https://nmf.no)
-- [FIM Europe – Sidecar](https://www.fimeurope.eu)
+- [FIM Europe – Sidevogn](https://www.fimeurope.eu)

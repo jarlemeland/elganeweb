@@ -1,4 +1,4 @@
 ---
 title: "Våre grener"
-description: "Elgane Motorsykkelklubb har tre motorsportgrener: ATV & Sidecar, MX og Speedway."
+description: "Elgane Motorsykkelklubb har tre motorsportgrener: ATV & Sidevogn, MX og Speedway."
 ---

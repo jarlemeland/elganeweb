@@ -25,7 +25,7 @@ title = "Elgane Motorsykkelklubb"
 
 # Site parameters
 [params]
-  description = "Motorsykkelklubb med ATV & Sidecar, MX og Speedway"
+  description = "Motorsykkelklubb med ATV & Sidevogn, MX og Speedway"
   author = "Elgane Motorsykkelklubb"
   logo = "/images/logo.svg"
   email = "post@elgane.no"
@@ -50,8 +50,8 @@ title = "Elgane Motorsykkelklubb"
   weight = 1
 
 [[menus.main]]
-  name = "ATV & Sidecar"
-  url = "/grener/atv-sidecar/"
+  name = "ATV & Sidevogn"
+  url = "/grener/atv-sidevogn/"
   weight = 2
 
 [[menus.main]]

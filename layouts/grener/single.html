@@ -51,7 +51,7 @@
 
         {{/* Upcoming trainings for this discipline */}}
         {{ with hugo.Data.treninger }}
-        {{ $grenMap := dict "atv" "ATV & Sidecar" "mx" "MX" "speedway" "Speedway" }}
+        {{ $grenMap := dict "atv" "ATV & Sidevogn" "mx" "MX" "speedway" "Speedway" }}
         {{ $grenName := index $grenMap $discipline }}
         {{ $upcoming := slice }}
         {{ $now := now.Format "2006-01-02" }}

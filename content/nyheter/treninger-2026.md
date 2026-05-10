@@ -12,7 +12,7 @@ Treningssesongen 2026 er i gang, og vi har planlagt treningsdager for våre medl
 
 ## Treninger 2026
 
-**ATV & Sidecar:**
+**ATV & Sidevogn:**
 - Dag: Lørdager kl. 10:00–16:00
 - Sted: Elgane bane
 

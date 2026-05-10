@@ -44,7 +44,7 @@ elganeweb/
 │   ├── bane-og-kart.md       # Bane og kart
 │   ├── personvern.md         # Personvernerklæring
 │   ├── grener/               # Grenersider
-│   │   ├── atv-sidecar.md
+│   │   ├── atv-sidevogn.md
 │   │   ├── mx.md
 │   │   └── speedway.md
 │   └── nyheter/              # Nyhetsposter
@@ -98,7 +98,7 @@ Treningsplanen lagres i `data/treninger.yaml`. Hvert oppføring har:
 | `dato` | Dato (YYYY-MM-DD) |
 | `tid_start` | Starttid (HH:MM) |
 | `tid_slutt` | Sluttid (HH:MM) |
-| `gren` | ATV & Sidecar, MX, eller Speedway |
+| `gren` | ATV & Sidevogn, MX, eller Speedway |
 | `sikringsleder` | Navn på sikringsleder |
 | `status` | bekreftet, avlyst, utsatt, trenger_sikringsleder |
 | `merknad` | Valgfri merknad |

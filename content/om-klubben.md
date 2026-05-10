@@ -5,14 +5,14 @@ description: "Informasjon om Elgane Motorsykkelklubb, medlemskap, styret og hist
 
 ## Velkommen til Elgane Motorsykkelklubb
 
-Elgane Motorsykkelklubb er en aktiv motorsportklubb i Norge med over [XX] medlemmer. Vi driver tre spennende motorsportgrener: ATV & Sidecar, Motocross (MX) og Speedway.
+Elgane Motorsykkelklubb er en aktiv motorsportklubb i Norge med over [XX] medlemmer. Vi driver tre spennende motorsportgrener: ATV & Sidevogn, Motocross (MX) og Speedway.
 
 Klubben har lang tradisjon og er kjent for godt kameratskap, sikker kjøring og engasjerte medlemmer i alle aldre.
 
 ## Våre grener
 
-**ATV & Sidecar**
-Cross-kjøring med ATV (firhjuling) og sidecar. Spennende og utfordrende kjøring for både førere og passasjerer.
+**ATV & Sidevogn**
+Cross-kjøring med ATV (firhjuling) og sidevogn. Spennende og utfordrende kjøring for både førere og passasjerer.
 
 **MX (Motocross)**
 Klassisk motocross med hopp, svinger og krevende terreng. For alle nivåer fra nybegynnere til erfarne kjørere.
