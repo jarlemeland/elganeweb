@@ -2,7 +2,7 @@
 title: "Speedway"
 description: "Speedway-seksjonen i Elgane Motorsykkelklubb. Spektakulær motorsport på oval bane."
 discipline: "speedway"
-color: "#2196f3"
+color: "#8B5E3C"
 treningsdager: "Mandager og onsdager"
 treningstid: "17:00 – 20:00"
 sesong: "Mai – September"
@@ -140,8 +140,8 @@ Mange speedwaykjørere trener kun for gleden – du velger selv!
 
 ## Sikkerhet
 
-**Sikringsledere:**
-Godkjente sikringsledere er alltid til stede under trening og konkurranser.
+**Sikkerhetsledere:**
+Godkjente sikkerhetsledere er alltid til stede under trening og konkurranser.
 
 **Flaggsignaler:**
 - Grønt flagg: Start/fortsett

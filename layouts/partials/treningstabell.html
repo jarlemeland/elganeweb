@@ -39,6 +39,27 @@
     {{ $display = first $limit $upcoming }}
   {{ end }}
 
+  {{/* Collect unique disciplines for filter */}}
+  {{ $grener := slice }}
+  {{ range $upcoming }}
+    {{ if not (in $grener .gren) }}
+      {{ $grener = $grener | append .gren }}
+    {{ end }}
+  {{ end }}
+
+  {{ if and (not $grenFilter) (gt (len $grener) 1) }}
+  <div class="treningsfilter">
+    <button class="treningsfilter__btn treningsfilter__btn--active" data-filter="alle">Alle</button>
+    {{ range $grener }}
+    {{ $slug := "atv" }}
+    {{ if eq . "MX" }}{{ $slug = "mx" }}
+    {{ else if eq . "Speedway" }}{{ $slug = "speedway" }}
+    {{ end }}
+    <button class="treningsfilter__btn treningsfilter__btn--{{ $slug }}" data-filter="{{ $slug }}">{{ . }}</button>
+    {{ end }}
+  </div>
+  {{ end }}
+
   <div class="treningstabell-wrapper">
     <table class="treningstabell">
       <thead>
@@ -65,6 +86,28 @@
       </tbody>
     </table>
   </div>
+
+  <script>
+  (function() {
+    var btns = document.querySelectorAll('.treningsfilter__btn');
+    if (!btns.length) return;
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filter = btn.getAttribute('data-filter');
+        btns.forEach(function(b) { b.classList.remove('treningsfilter__btn--active'); });
+        btn.classList.add('treningsfilter__btn--active');
+        var rows = document.querySelectorAll('.treningstabell tbody tr');
+        rows.forEach(function(row) {
+          if (filter === 'alle' || row.getAttribute('data-gren') === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+  </script>
 
 {{ else }}
   <p class="text-center" style="color: var(--color-text-secondary);">Ingen kommende treninger er lagt inn enda.</p>

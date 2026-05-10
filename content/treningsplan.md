@@ -1,9 +1,7 @@
 ---
 title: "Treningsplan"
-description: "Oversikt over kommende treninger med sikringsleder for Elgane Motorsykkelklubb."
+description: "Oversikt over kommende treninger med sikkerhetsleder for Elgane Motorsykkelklubb."
 ---
-
-## Treningsplan
 
 Oversikt over kommende treninger.
 

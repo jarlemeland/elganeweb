@@ -26,7 +26,7 @@ Sikkerhet er vår høyeste prioritet i Elgane Motorsykkelklubb. Her er viktig in
 
 ## Regler på banen
 
-1. **Sikringsleder må være til stede**: Ingen trening uten godkjent sikringsleder på plass
+1. **Sikkerhetsleder må være til stede**: Ingen trening uten godkjent sikkerhetsleder på plass
 2. **Følg flaggsignaler**: Lær og respekter flaggsignaler
 3. **Respekter andre kjørere**: Hold avstand og vær forutsigbar
 4. **Kjør etter eget nivå**: Ikke ta unødvendige sjanser
@@ -35,8 +35,8 @@ Sikkerhet er vår høyeste prioritet i Elgane Motorsykkelklubb. Her er viktig in
 ## Ved ulykke
 
 1. Stopp umiddelbart ved rødt flagg
-2. Gi plass til sikringsleder og hjelpemannskap
-3. Følg sikringsleders instruksjoner
+2. Gi plass til sikkerhetsleder og hjelpemannskap
+3. Følg sikkerhetsleders instruksjoner
 4. Alle ulykker skal rapporteres
 
 ## Forsikring

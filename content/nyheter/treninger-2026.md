@@ -28,10 +28,10 @@ Treningssesongen 2026 er i gang, og vi har planlagt treningsdager for våre medl
 
 - Alle medlemmer må ha gyldig lisens fra NMF
 - Husk sikkerhetsutstyr (hjelm, hansker, støvler, etc.)
-- Sikringsleder må være til stede under all trening
+- Sikkerhetsleder må være til stede under all trening
 - Følg alltid instruktørens anvisninger
 
-Sjekk [treningsplanen](/treningsplan/) for bekreftede datoer og sikringsledere.
+Sjekk [treningsplanen](/treningsplan/) for bekreftede datoer og sikkerhetsledere.
 
 ## Ikke medlem enda?
 

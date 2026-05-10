@@ -16,7 +16,7 @@ Etter å ha brukt IdrettenOnline i flere år, har vi nå bygget en moderne og br
 
 - **Nyheter og oppdateringer**: Hold deg oppdatert på arrangementer, treninger og klubbnyheter
 - **Informasjon om våre grener**: Dedikerte sider for ATV & Sidevogn, MX og Speedway
-- **Treningsplan**: Oversikt over treningsdager med sikringsleder
+- **Treningsplan**: Oversikt over treningsdager med sikkerhetsleder
 - **Om klubben**: Informasjon om styret, historikk og hvordan bli medlem
 - **Kontaktinformasjon**: Enkel måte å komme i kontakt med klubben på
 

@@ -147,7 +147,7 @@ collections:
                   - "ATV & Sidevogn"
                   - "MX"
                   - "Speedway"
-              - { label: "Sikringsleder", name: "sikringsleder", widget: "string", required: false, hint: "Navn på sikringsleder" }
+              - { label: "Sikkerhetsleder", name: "sikkerhetsleder", widget: "string", required: false, hint: "Navn på sikkerhetsleder" }
               - label: "Status"
                 name: "status"
                 widget: "select"
@@ -155,6 +155,6 @@ collections:
                   - { label: "Bekreftet", value: "bekreftet" }
                   - { label: "Avlyst", value: "avlyst" }
                   - { label: "Utsatt", value: "utsatt" }
-                  - { label: "Trenger sikringsleder", value: "trenger_sikringsleder" }
-                default: "trenger_sikringsleder"
+                  - { label: "Trenger sikkerhetsleder", value: "trenger_sikkerhetsleder" }
+                default: "trenger_sikkerhetsleder"
               - { label: "Merknad", name: "merknad", widget: "string", required: false }

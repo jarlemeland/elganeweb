@@ -135,8 +135,8 @@ Vil du bare trene? Det er helt greit! Mange kjører kun for trening og moro. Du 
 
 ## Sikkerhet
 
-**Sikringsledere:**
-Alle treninger og konkurranser har godkjente sikringsledere til stede.
+**Sikkerhetsledere:**
+Alle treninger og konkurranser har godkjente sikkerhetsledere til stede.
 
 **Flaggsignaler:**
 - Grønt flagg: Fortsett kjøring

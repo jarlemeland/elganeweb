@@ -7,8 +7,8 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Brand colors */
-  --color-primary: #3fb970;
-  --color-primary-dark: #35a060;
+  --color-primary: #1B4332;
+  --color-primary-dark: #143326;
   --color-primary-light: #e8f5ee;
   --color-dark: #1a1a1a;
   --color-dark-medium: #2d2d2d;
@@ -34,7 +34,7 @@
   /* Discipline colors */
   --color-atv: #3fb970;
   --color-mx: #ff9800;
-  --color-speedway: #2196f3;
+  --color-speedway: #8B5E3C;
 
   /* Typography */
   --font-heading: 'Montserrat', sans-serif;
@@ -224,6 +224,12 @@ hr {
   gap: var(--space-sm);
 }
 
+.site-logo__moose {
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+}
+
 .site-logo__text {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -232,16 +238,30 @@ hr {
 }
 
 .site-logo__accent {
-  color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.site-logo__short {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .site-logo__full {
+    display: none;
+  }
+  .site-logo__short {
+    display: inline;
+  }
 }
 
 /* Navigation */
 .nav-list {
   display: flex;
   list-style: none;
-  gap: var(--space-sm);
+  gap: 0;
   padding: 0;
   margin: 0;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
@@ -249,10 +269,11 @@ hr {
   font-family: var(--font-heading);
   font-size: var(--font-size-sm);
   font-weight: 600;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--border-radius-sm);
   transition: background-color var(--transition), color var(--transition);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -350,8 +371,11 @@ hr {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 700px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .hero__title {
@@ -479,14 +503,57 @@ hr {
   margin-bottom: var(--space-md);
 }
 
-/* Branch card — colored top border */
+/* Branch card — dark top border */
 .card--gren {
-  border-top: 4px solid var(--gren-color, var(--color-primary));
+  border-top: 4px solid var(--color-dark);
 }
 
 /* --------------------------------------------------------------------------
    9. Training Schedule Table
    -------------------------------------------------------------------------- */
+.treningsfilter {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.treningsfilter__btn {
+  padding: var(--space-xs) var(--space-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.treningsfilter__btn:hover {
+  border-color: var(--color-primary);
+}
+
+.treningsfilter__btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.treningsfilter__btn--atv.treningsfilter__btn--active {
+  background: var(--color-atv);
+  border-color: var(--color-atv);
+}
+
+.treningsfilter__btn--mx.treningsfilter__btn--active {
+  background: var(--color-mx);
+  border-color: var(--color-mx);
+}
+
+.treningsfilter__btn--speedway.treningsfilter__btn--active {
+  background: var(--color-speedway);
+  border-color: var(--color-speedway);
+}
+
 .treningstabell-wrapper {
   overflow-x: auto;
   margin: var(--space-xl) 0;
@@ -993,6 +1060,24 @@ hr {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Responsive map embed */
+.map-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin: var(--space-lg) 0;
+  border-radius: var(--radius);
+}
+
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* --------------------------------------------------------------------------
