@@ -6,12 +6,14 @@
 
 {{ $limit := 0 }}
 {{ $grenFilter := "" }}
+{{ $compact := false }}
 {{ $ctx := . }}
 
 {{ if reflect.IsMap . }}
   {{ $ctx = .context }}
   {{ $limit = .limit | default 0 }}
   {{ $grenFilter = .gren | default "" }}
+  {{ $compact = .compact | default false }}
 {{ end }}
 
 {{ with hugo.Data.treninger }}
@@ -44,9 +46,11 @@
           <th>Dato</th>
           <th>Tid</th>
           <th>Gren</th>
+          {{ if not $compact }}
           <th>Sikringsleder</th>
           <th>Status</th>
           <th>Merknad</th>
+          {{ end }}
         </tr>
       </thead>
       <tbody>
@@ -61,6 +65,7 @@
           <td data-label="Gren">
             <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
           </td>
+          {{ if not $compact }}
           <td data-label="Sikringsleder">
             {{ with .sikringsleder }}
               {{ . }}
@@ -87,6 +92,7 @@
             <span class="{{ $statusClass }}">{{ $statusText }}</span>
           </td>
           <td data-label="Merknad">{{ .merknad }}</td>
+          {{ end }}
         </tr>
         {{ end }}
       </tbody>

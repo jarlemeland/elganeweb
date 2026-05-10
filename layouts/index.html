@@ -27,7 +27,7 @@
       <p class="section-header__subtitle">Neste treningsdager med sikringsleder</p>
     </div>
 
-    {{ partial "treningstabell.html" (dict "context" . "limit" 5) }}
+    {{ partial "treningstabell.html" (dict "context" . "limit" 5 "compact" true) }}
 
     <div class="text-center mt-xl">
       <a href="/treningsplan/" class="btn btn--secondary">Se full treningsplan</a>
