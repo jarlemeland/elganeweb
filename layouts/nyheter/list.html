@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+
+    {{/* Category filter */}}
+    {{ $kategorier := .Site.Taxonomies.kategorier }}
+    {{ if $kategorier }}
+    <nav class="mb-xl" aria-label="Filtrer etter kategori">
+      <a href="/nyheter/" class="kategori-badge kategori-badge--nyheter">Alle</a>
+      {{ range $name, $taxonomy := $kategorier }}
+      <a href="{{ "/kategorier/" | relLangURL }}{{ $name | urlize }}/" class="kategori-badge">{{ $name }}</a>
+      {{ end }}
+    </nav>
+    {{ end }}
+
+    {{/* News grid */}}
+    <div class="grid grid--3">
+      {{ range .Paginator.Pages }}
+      {{ partial "nyheter-kort.html" . }}
+      {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+  </div>
+</section>
+{{ end }}

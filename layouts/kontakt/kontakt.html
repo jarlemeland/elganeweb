@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="article">
+  <div class="container">
+    {{ partial "breadcrumb.html" . }}
+
+    <h1 class="article__title">{{ .Title }}</h1>
+
+    <div class="contact-grid">
+      {{/* Contact form */}}
+      <div>
+        <h2>Send oss en melding</h2>
+        {{ partial "kontaktskjema.html" . }}
+      </div>
+
+      {{/* Contact info */}}
+      <div class="contact-info">
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</article>
+{{ end }}

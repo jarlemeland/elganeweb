@@ -1,0 +1,67 @@
+{{ define "main" }}
+
+{{/* Hero Section */}}
+{{ partial "hero.html" . }}
+
+{{/* Branches Section */}}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-header__title">Våre grener</h2>
+      <p class="section-header__subtitle">Tre spennende motorsportgrener for alle nivåer</p>
+    </div>
+
+    <div class="grid grid--3">
+      {{ range (where .Site.RegularPages "Section" "grener") }}
+      {{ partial "grenekort.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* Training Schedule Preview */}}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-header__title">Kommende treninger</h2>
+      <p class="section-header__subtitle">Neste treningsdager med sikringsleder</p>
+    </div>
+
+    {{ partial "treningstabell.html" (dict "context" . "limit" 5) }}
+
+    <div class="text-center mt-xl">
+      <a href="/treningsplan/" class="btn btn--secondary">Se full treningsplan</a>
+    </div>
+  </div>
+</section>
+
+{{/* Latest News */}}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-header__title">Siste nytt</h2>
+      <p class="section-header__subtitle">Nyheter og oppdateringer fra klubben</p>
+    </div>
+
+    <div class="grid grid--3">
+      {{ range first 3 (where .Site.RegularPages "Section" "nyheter") }}
+      {{ partial "nyheter-kort.html" . }}
+      {{ end }}
+    </div>
+
+    <div class="text-center mt-xl">
+      <a href="/nyheter/" class="btn btn--secondary">Alle nyheter</a>
+    </div>
+  </div>
+</section>
+
+{{/* CTA Section */}}
+<section class="cta-section">
+  <div class="container">
+    <h2>Bli med i Elgane Motorsykkelklubb!</h2>
+    <p class="mb-lg">Enten du er nybegynner eller erfaren kjører – vi har plass til deg.</p>
+    <a href="/kontakt/" class="btn btn--secondary">Kontakt oss</a>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,88 @@
+{{ define "main" }}
+{{ $discipline := .Params.discipline | default "atv" }}
+{{ $color := .Params.color | default "#3fb970" }}
+
+<article class="branch-page" style="--gren-color: {{ $color }}">
+  <div class="container">
+    {{ partial "breadcrumb.html" . }}
+
+    <header class="branch-header">
+      <h1 class="branch-header__title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="hero__subtitle">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="grid grid--2" style="grid-template-columns: 1fr 300px;">
+      {{/* Main content */}}
+      <div class="article__content">
+        {{ .Content }}
+      </div>
+
+      {{/* Sidebar info box */}}
+      <aside>
+        <div class="branch-info-box">
+          <h3 class="mb-md">Praktisk info</h3>
+          <dl>
+            {{ with .Params.treningsdager }}
+            <dt>Treningsdager</dt>
+            <dd>{{ . }}</dd>
+            {{ end }}
+            {{ with .Params.treningstid }}
+            <dt>Tid</dt>
+            <dd>{{ . }}</dd>
+            {{ end }}
+            {{ with .Params.sesong }}
+            <dt>Sesong</dt>
+            <dd>{{ . }}</dd>
+            {{ end }}
+            {{ with .Params.kontaktperson }}
+            <dt>Kontaktperson</dt>
+            <dd>{{ . }}</dd>
+            {{ end }}
+            {{ with .Params.kontaktepost }}
+            <dt>E-post</dt>
+            <dd><a href="mailto:{{ . }}">{{ . }}</a></dd>
+            {{ end }}
+            {{ with .Params.kontakttelefon }}
+            <dt>Telefon</dt>
+            <dd><a href="tel:{{ . }}">{{ . }}</a></dd>
+            {{ end }}
+          </dl>
+        </div>
+
+        {{/* Upcoming trainings for this discipline */}}
+        {{ with hugo.Data.treninger }}
+        {{ $grenMap := dict "atv" "ATV & Sidecar" "mx" "MX" "speedway" "Speedway" }}
+        {{ $grenName := index $grenMap $discipline }}
+        {{ $upcoming := slice }}
+        {{ $now := now.Format "2006-01-02" }}
+        {{ range .treninger }}
+          {{ if and (ge .dato $now) (eq .gren $grenName) }}
+            {{ $upcoming = $upcoming | append . }}
+          {{ end }}
+        {{ end }}
+        {{ if $upcoming }}
+        <div class="branch-info-box mt-lg">
+          <h3 class="mb-md">Neste treninger</h3>
+          {{ range first 3 $upcoming }}
+          <div class="mb-md">
+            <strong>{{ .dato }}</strong><br>
+            {{ .tid_start }}–{{ .tid_slutt }}<br>
+            <small>Sikringsleder: {{ with .sikringsleder }}{{ . }}{{ else }}<em>Ikke satt</em>{{ end }}</small>
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
+      </aside>
+    </div>
+  </div>
+</article>
+
+<style>
+  @media (max-width: 768px) {
+    .branch-page .grid--2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+{{ end }}

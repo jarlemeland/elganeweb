@@ -1,0 +1,49 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3 class="footer-heading">Elgane Motorsykkelklubb</h3>
+        <p class="footer-text">Motorsykkelklubb med ATV & Sidecar, MX og Speedway.</p>
+        {{ with .Site.Params.email }}
+        <p class="footer-text">
+          <a href="mailto:{{ . }}" class="footer-link">{{ . }}</a>
+        </p>
+        {{ end }}
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-heading">Lenker</h3>
+        <ul class="footer-links">
+          {{ range .Site.Menus.footer }}
+          <li><a href="{{ .URL }}" class="footer-link">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-heading">Grener</h3>
+        <ul class="footer-links">
+          <li><a href="/grener/atv-sidecar/" class="footer-link">ATV & Sidecar</a></li>
+          <li><a href="/grener/mx/" class="footer-link">MX</a></li>
+          <li><a href="/grener/speedway/" class="footer-link">Speedway</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ now.Year }} Elgane Motorsykkelklubb. Alle rettigheter reservert.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function() {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>

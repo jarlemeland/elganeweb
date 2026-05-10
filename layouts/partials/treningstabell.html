@@ -1,0 +1,99 @@
+{{/* Training schedule table partial
+     Usage: {{ partial "treningstabell.html" (dict "context" . "limit" 5 "gren" "MX") }}
+     - limit: max number of rows (0 = all)
+     - gren: filter by discipline name (empty = all)
+*/}}
+
+{{ $limit := 0 }}
+{{ $grenFilter := "" }}
+{{ $ctx := . }}
+
+{{ if reflect.IsMap . }}
+  {{ $ctx = .context }}
+  {{ $limit = .limit | default 0 }}
+  {{ $grenFilter = .gren | default "" }}
+{{ end }}
+
+{{ with hugo.Data.treninger }}
+{{ $now := now.Format "2006-01-02" }}
+{{ $upcoming := slice }}
+
+{{ range .treninger }}
+  {{ $show := true }}
+  {{/* Filter past dates */}}
+  {{ if lt .dato $now }}{{ $show = false }}{{ end }}
+  {{/* Filter by discipline if specified */}}
+  {{ if and (ne $grenFilter "") (ne .gren $grenFilter) }}{{ $show = false }}{{ end }}
+
+  {{ if $show }}
+    {{ $upcoming = $upcoming | append . }}
+  {{ end }}
+{{ end }}
+
+{{ if $upcoming }}
+  {{/* Apply limit */}}
+  {{ $display := $upcoming }}
+  {{ if and (gt $limit 0) (gt (len $upcoming) $limit) }}
+    {{ $display = first $limit $upcoming }}
+  {{ end }}
+
+  <div class="treningstabell-wrapper">
+    <table class="treningstabell">
+      <thead>
+        <tr>
+          <th>Dato</th>
+          <th>Tid</th>
+          <th>Gren</th>
+          <th>Sikringsleder</th>
+          <th>Status</th>
+          <th>Merknad</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $display }}
+        {{ $grenSlug := "atv" }}
+        {{ if eq .gren "MX" }}{{ $grenSlug = "mx" }}
+        {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
+        {{ end }}
+        <tr data-gren="{{ $grenSlug }}">
+          <td data-label="Dato">{{ .dato }}</td>
+          <td data-label="Tid">{{ .tid_start }}–{{ .tid_slutt }}</td>
+          <td data-label="Gren">
+            <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
+          </td>
+          <td data-label="Sikringsleder">
+            {{ with .sikringsleder }}
+              {{ . }}
+            {{ else }}
+              <em style="color: var(--color-warning);">Trenger sikringsleder</em>
+            {{ end }}
+          </td>
+          <td data-label="Status">
+            {{ $statusClass := "status-badge" }}
+            {{ $statusText := .status }}
+            {{ if eq .status "bekreftet" }}
+              {{ $statusClass = "status-badge status-badge--bekreftet" }}
+              {{ $statusText = "Bekreftet" }}
+            {{ else if eq .status "avlyst" }}
+              {{ $statusClass = "status-badge status-badge--avlyst" }}
+              {{ $statusText = "Avlyst" }}
+            {{ else if eq .status "utsatt" }}
+              {{ $statusClass = "status-badge status-badge--utsatt" }}
+              {{ $statusText = "Utsatt" }}
+            {{ else if eq .status "trenger_sikringsleder" }}
+              {{ $statusClass = "status-badge status-badge--trenger_sikringsleder" }}
+              {{ $statusText = "Trenger sikringsleder" }}
+            {{ end }}
+            <span class="{{ $statusClass }}">{{ $statusText }}</span>
+          </td>
+          <td data-label="Merknad">{{ .merknad }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+{{ else }}
+  <p class="text-center" style="color: var(--color-text-secondary);">Ingen kommende treninger er lagt inn enda.</p>
+{{ end }}
+{{ end }}

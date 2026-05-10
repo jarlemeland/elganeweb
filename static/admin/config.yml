@@ -1,0 +1,160 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: "nb"
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # --- NEWS POSTS ---
+  - name: "nyheter"
+    label: "Nyheter"
+    folder: "content/nyheter"
+    create: true
+    slug: "{{slug}}"
+    sort: "date:desc"
+    fields:
+      - { label: "Tittel", name: "title", widget: "string" }
+      - { label: "Publiseringsdato", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Beskrivelse", name: "description", widget: "string", required: false, hint: "Kort beskrivelse for SEO og deling" }
+      - label: "Kategorier"
+        name: "kategorier"
+        widget: "select"
+        multiple: true
+        options:
+          - "Nyheter"
+          - "Arrangementer"
+          - "ATV & Sidecar"
+          - "MX"
+          - "Speedway"
+      - { label: "Hovedbilde", name: "image", widget: "image", required: false, hint: "Anbefalt 1200x675px (16:9)" }
+      - { label: "Utkast", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Innhold", name: "body", widget: "markdown" }
+
+  # --- BRANCH PAGES ---
+  - name: "grener"
+    label: "Grener"
+    folder: "content/grener"
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tittel", name: "title", widget: "string" }
+      - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+      - label: "Gren"
+        name: "discipline"
+        widget: "select"
+        options:
+          - { label: "ATV & Sidecar", value: "atv" }
+          - { label: "MX", value: "mx" }
+          - { label: "Speedway", value: "speedway" }
+      - { label: "Farge", name: "color", widget: "string", hint: "Hex-farge for grenen, f.eks. #3fb970" }
+      - { label: "Treningsdager", name: "treningsdager", widget: "string" }
+      - { label: "Treningstid", name: "treningstid", widget: "string" }
+      - { label: "Sesong", name: "sesong", widget: "string" }
+      - { label: "Kontaktperson", name: "kontaktperson", widget: "string", required: false }
+      - { label: "Kontakt e-post", name: "kontaktepost", widget: "string", required: false }
+      - { label: "Kontakt telefon", name: "kontakttelefon", widget: "string", required: false }
+      - { label: "Hovedbilde", name: "image", widget: "image", required: false }
+      - { label: "Innhold", name: "body", widget: "markdown" }
+
+  # --- STANDALONE PAGES ---
+  - name: "sider"
+    label: "Sider"
+    files:
+      - label: "Forside"
+        name: "forside"
+        file: "content/_index.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Undertittel", name: "subtitle", widget: "string", required: false }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Hero-bilde", name: "hero_image", widget: "image", required: false }
+          - { label: "CTA-tekst", name: "cta_text", widget: "string", default: "Bli med", required: false }
+          - { label: "CTA-lenke", name: "cta_url", widget: "string", default: "/kontakt/", required: false }
+          - { label: "Innhold", name: "body", widget: "markdown", required: false }
+
+      - label: "Om klubben"
+        name: "om-klubben"
+        file: "content/om-klubben.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Innhold", name: "body", widget: "markdown" }
+
+      - label: "Kontakt"
+        name: "kontakt"
+        file: "content/kontakt.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "kontakt" }
+          - { label: "Type", name: "type", widget: "hidden", default: "kontakt" }
+          - { label: "Innhold", name: "body", widget: "markdown" }
+
+      - label: "Bane og kart"
+        name: "bane-og-kart"
+        file: "content/bane-og-kart.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Innhold", name: "body", widget: "markdown" }
+
+      - label: "Treningsplan"
+        name: "treningsplan"
+        file: "content/treningsplan.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Innhold", name: "body", widget: "markdown" }
+
+      - label: "Personvern"
+        name: "personvern"
+        file: "content/personvern.md"
+        fields:
+          - { label: "Tittel", name: "title", widget: "string" }
+          - { label: "Beskrivelse", name: "description", widget: "string", required: false }
+          - { label: "Innhold", name: "body", widget: "markdown" }
+
+  # --- TRAINING SCHEDULE ---
+  - name: "treningsplan"
+    label: "Treningsplan"
+    files:
+      - label: "Treningsdager"
+        name: "treninger"
+        file: "data/treninger.yaml"
+        fields:
+          - { label: "Sesong", name: "sesong", widget: "string" }
+          - { label: "Sist oppdatert", name: "oppdatert", widget: "string", hint: "YYYY-MM-DD" }
+          - label: "Treninger"
+            name: "treninger"
+            widget: "list"
+            summary: "{{fields.dato}} - {{fields.gren}} ({{fields.status}})"
+            fields:
+              - { label: "Dato", name: "dato", widget: "string", hint: "Format: YYYY-MM-DD (f.eks. 2026-06-15)" }
+              - { label: "Starttid", name: "tid_start", widget: "string", default: "10:00", hint: "Format: HH:MM" }
+              - { label: "Sluttid", name: "tid_slutt", widget: "string", default: "16:00", hint: "Format: HH:MM" }
+              - label: "Gren"
+                name: "gren"
+                widget: "select"
+                options:
+                  - "ATV & Sidecar"
+                  - "MX"
+                  - "Speedway"
+              - { label: "Sikringsleder", name: "sikringsleder", widget: "string", required: false, hint: "Navn på sikringsleder" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options:
+                  - { label: "Bekreftet", value: "bekreftet" }
+                  - { label: "Avlyst", value: "avlyst" }
+                  - { label: "Utsatt", value: "utsatt" }
+                  - { label: "Trenger sikringsleder", value: "trenger_sikringsleder" }
+                default: "trenger_sikringsleder"
+              - { label: "Merknad", name: "merknad", widget: "string", required: false }

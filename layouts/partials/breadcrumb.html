@@ -1,0 +1,11 @@
+<nav class="breadcrumb" aria-label="Brødsmulesti">
+  <a href="/">Hjem</a>
+  {{ if .Parent }}
+    {{ if ne .Parent.RelPermalink "/" }}
+    <span class="breadcrumb__separator" aria-hidden="true">/</span>
+    <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>
+    {{ end }}
+  {{ end }}
+  <span class="breadcrumb__separator" aria-hidden="true">/</span>
+  <span aria-current="page">{{ .Title }}</span>
+</nav>

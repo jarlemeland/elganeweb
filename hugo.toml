@@ -1,0 +1,96 @@
+baseURL = "https://elgane.no/"
+locale = "nb"
+defaultContentLanguage = "nb"
+title = "Elgane Motorsykkelklubb"
+
+# Pagination
+[pagination]
+  pagerSize = 9
+
+# Permalink structure
+[permalinks]
+  nyheter = "/nyheter/:slug/"
+
+# Taxonomy
+[taxonomies]
+  kategori = "kategorier"
+
+# Markup
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = true
+
+# Site parameters
+[params]
+  description = "Motorsykkelklubb med ATV & Sidecar, MX og Speedway"
+  author = "Elgane Motorsykkelklubb"
+  logo = "/images/logo.svg"
+  email = "post@elgane.no"
+  phone = ""
+  address = ""
+  facebook = ""
+  instagram = ""
+  orgNummer = ""
+
+  colorPrimary = "#3fb970"
+  colorDark = "#1a1a1a"
+  colorATV = "#3fb970"
+  colorMX = "#ff9800"
+  colorSpeedway = "#2196f3"
+
+  dateFormat = "2. January 2006"
+
+# Main menu
+[[menus.main]]
+  name = "Hjem"
+  url = "/"
+  weight = 1
+
+[[menus.main]]
+  name = "ATV & Sidecar"
+  url = "/grener/atv-sidecar/"
+  weight = 2
+
+[[menus.main]]
+  name = "MX"
+  url = "/grener/mx/"
+  weight = 3
+
+[[menus.main]]
+  name = "Speedway"
+  url = "/grener/speedway/"
+  weight = 4
+
+[[menus.main]]
+  name = "Nyheter"
+  url = "/nyheter/"
+  weight = 5
+
+[[menus.main]]
+  name = "Om klubben"
+  url = "/om-klubben/"
+  weight = 6
+
+[[menus.main]]
+  name = "Kontakt"
+  url = "/kontakt/"
+  weight = 7
+
+# Footer menu
+[[menus.footer]]
+  name = "Bane og kart"
+  url = "/bane-og-kart/"
+  weight = 1
+
+[[menus.footer]]
+  name = "Personvern"
+  url = "/personvern/"
+  weight = 2
+
+[[menus.footer]]
+  name = "Kontakt"
+  url = "/kontakt/"
+  weight = 3

@@ -1,0 +1,43 @@
+<form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+  <input type="hidden" name="form-name" value="kontakt">
+
+  <!-- Honeypot for spam prevention -->
+  <p class="visually-hidden">
+    <label>Ikke fyll ut dette feltet: <input name="bot-field"></label>
+  </p>
+
+  <div class="form-group">
+    <label class="form-label" for="navn">Navn *</label>
+    <input class="form-input" type="text" id="navn" name="navn" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="epost">E-post *</label>
+    <input class="form-input" type="email" id="epost" name="epost" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="telefon">Telefon</label>
+    <input class="form-input" type="tel" id="telefon" name="telefon">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="emne">Emne *</label>
+    <input class="form-input" type="text" id="emne" name="emne" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="melding">Melding *</label>
+    <textarea class="form-textarea" id="melding" name="melding" rows="6" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="form-checkbox-label">
+      <input type="checkbox" name="samtykke" required>
+      Jeg samtykker til at Elgane Motorsykkelklubb lagrer mine opplysninger for å besvare denne henvendelsen.
+      <a href="/personvern/">Les personvernerklæring</a>
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn--primary">Send melding</button>
+</form>

@@ -1,0 +1,21 @@
+<article class="card card--nyheter">
+  {{ with .Params.image }}
+  <img src="{{ . }}" alt="{{ $.Title }}" class="card__image" loading="lazy">
+  {{ end }}
+  <div class="card__content">
+    <div class="card__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "2. January 2006" }}
+      </time>
+      {{ with .Params.kategorier }}
+      {{ range first 1 . }}
+      <span class="kategori-badge kategori-badge--nyheter">{{ . }}</span>
+      {{ end }}
+      {{ end }}
+    </div>
+    <h3 class="card__title">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h3>
+    <p class="card__excerpt">{{ .Summary | truncate 120 }}</p>
+  </div>
+</article>

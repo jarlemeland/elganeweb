@@ -1,0 +1,19 @@
+{{ $title := .Params.title | default .Site.Title }}
+{{ $subtitle := .Params.subtitle | default .Site.Params.description }}
+{{ $cta_text := .Params.cta_text | default "Kontakt oss" }}
+{{ $cta_url := .Params.cta_url | default "/kontakt/" }}
+{{ $hero_image := .Params.hero_image }}
+
+<section class="hero"{{ with $hero_image }} style="background-image: url('{{ . }}')"{{ end }}>
+  <div class="container">
+    <div class="hero__content">
+      <h1 class="hero__title">
+        {{ $title }}
+      </h1>
+      {{ with $subtitle }}
+      <p class="hero__subtitle">{{ . }}</p>
+      {{ end }}
+      <a href="{{ $cta_url }}" class="btn btn--primary">{{ $cta_text }}</a>
+    </div>
+  </div>
+</section>

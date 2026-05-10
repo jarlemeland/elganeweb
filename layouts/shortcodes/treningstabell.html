@@ -1,0 +1,4 @@
+{{/* Shortcode: treningstabell - embed training schedule in any page */}}
+{{ $gren := .Get "gren" | default "" }}
+{{ $limit := .Get "limit" | default 0 }}
+{{ partial "treningstabell.html" (dict "context" . "limit" (int $limit) "gren" $gren) }}
