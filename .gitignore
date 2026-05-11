@@ -1,0 +1,86 @@
+# Elgane Website Repository - Git Ignore
+
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor and IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Design Source Files (Optional - uncomment if you want to keep source files private)
+# design/mockups/source-files/
+# *.psd
+# *.ai
+# *.sketch
+# *.fig
+
+# Large Media Files (Optional - uncomment if logos/images get too large)
+# design/logo/*.psd
+# design/mockups/*.psd
+
+# Personal Notes (Optional)
+notes/
+TODO.md
+PRIVATE.md
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Node modules (if ever added)
+node_modules/
+
+# Python (if ever added)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# Ruby (if ever added)
+*.gem
+.bundle/
+vendor/
+
+# Compressed Files (unless intentionally added)
+# *.zip
+# *.tar.gz
+# *.rar
+
+# WordPress - DO NOT ADD THESE (this is not a WordPress repo)
+# wp-admin/
+# wp-includes/
+# wp-content/
+# wp-config.php
+
+# Notes:
+# - This repo contains DOCUMENTATION only
+# - WordPress files stay on the hosting provider
+# - Only documentation, guides, and content templates are versioned here

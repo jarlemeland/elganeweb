@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="site-logo" aria-label="Elgane Motorsykkelklubb - Hjem">
+      <img src="/images/uploads/elgane_logo2.png" alt="" class="site-logo__moose">
+      <span class="site-logo__text">Elgane <span class="site-logo__accent site-logo__full">Motorsykkelklubb</span><span class="site-logo__accent site-logo__short">MK</span></span>
+    </a>
+    {{ partial "nav.html" . }}
+    <button class="nav-toggle" aria-label="Meny" aria-expanded="false" aria-controls="main-nav">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var toggle = document.querySelector('.nav-toggle');
+    var nav = document.querySelector('.nav-menu');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+        nav.classList.toggle('nav-menu--open');
+        toggle.classList.toggle('nav-toggle--active');
+      });
+    }
+  })();
+</script>

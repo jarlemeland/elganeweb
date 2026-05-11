@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+{{/* Branches Section */}}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-header__title">Våre grener</h2>
+      <p class="section-header__subtitle">Tre spennende motorsportgrener for alle nivåer</p>
+    </div>
+
+    <div class="grid grid--3">
+      {{ range (where .Site.RegularPages "Section" "grener") }}
+      {{ partial "grenekort.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* CTA Section */}}
+<section class="cta-section">
+  <div class="container">
+    <h2>Bli med i Elgane Motorsykkelklubb!</h2>
+    <p class="mb-lg">Enten du er nybegynner eller erfaren kjører – vi har plass til deg.</p>
+    <a href="/kontakt/" class="btn btn--secondary">Kontakt oss</a>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,12 @@
+<nav id="main-nav" class="nav-menu" aria-label="Hovedmeny">
+  <ul class="nav-list">
+    {{ range .Site.Menus.main }}
+    <li class="nav-item">
+      <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} nav-link--active{{ end }}{{ if $.HasMenuCurrent "main" . }} nav-link--active{{ end }}"
+         {{ if .HasChildren }}aria-haspopup="true"{{ end }}>
+        {{ .Name }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</nav>

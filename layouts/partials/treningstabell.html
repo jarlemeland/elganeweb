@@ -1,0 +1,115 @@
+{{/* Training schedule table partial
+     Usage: {{ partial "treningstabell.html" (dict "context" . "limit" 5 "gren" "MX") }}
+     - limit: max number of rows (0 = all)
+     - gren: filter by discipline name (empty = all)
+*/}}
+
+{{ $limit := 0 }}
+{{ $grenFilter := "" }}
+{{ $compact := false }}
+{{ $ctx := . }}
+
+{{ if reflect.IsMap . }}
+  {{ $ctx = .context }}
+  {{ $limit = .limit | default 0 }}
+  {{ $grenFilter = .gren | default "" }}
+  {{ $compact = .compact | default false }}
+{{ end }}
+
+{{ with hugo.Data.treninger }}
+{{ $now := now.Format "2006-01-02" }}
+{{ $upcoming := slice }}
+
+{{ range .treninger }}
+  {{ $show := true }}
+  {{/* Filter past dates */}}
+  {{ if lt .dato $now }}{{ $show = false }}{{ end }}
+  {{/* Filter by discipline if specified */}}
+  {{ if and (ne $grenFilter "") (ne .gren $grenFilter) }}{{ $show = false }}{{ end }}
+
+  {{ if $show }}
+    {{ $upcoming = $upcoming | append . }}
+  {{ end }}
+{{ end }}
+
+{{ if $upcoming }}
+  {{/* Apply limit */}}
+  {{ $display := $upcoming }}
+  {{ if and (gt $limit 0) (gt (len $upcoming) $limit) }}
+    {{ $display = first $limit $upcoming }}
+  {{ end }}
+
+  {{/* Collect unique disciplines for filter */}}
+  {{ $grener := slice }}
+  {{ range $upcoming }}
+    {{ if not (in $grener .gren) }}
+      {{ $grener = $grener | append .gren }}
+    {{ end }}
+  {{ end }}
+
+  {{ if and (not $grenFilter) (gt (len $grener) 1) }}
+  <div class="treningsfilter">
+    <button class="treningsfilter__btn treningsfilter__btn--active" data-filter="alle">Alle</button>
+    {{ range $grener }}
+    {{ $slug := "atv" }}
+    {{ if eq . "MX" }}{{ $slug = "mx" }}
+    {{ else if eq . "Speedway" }}{{ $slug = "speedway" }}
+    {{ end }}
+    <button class="treningsfilter__btn treningsfilter__btn--{{ $slug }}" data-filter="{{ $slug }}">{{ . }}</button>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <div class="treningstabell-wrapper">
+    <table class="treningstabell">
+      <thead>
+        <tr>
+          <th>Dato</th>
+          <th>Tid</th>
+          <th>Gren</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $display }}
+        {{ $grenSlug := "atv" }}
+        {{ if eq .gren "MX" }}{{ $grenSlug = "mx" }}
+        {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
+        {{ end }}
+        <tr data-gren="{{ $grenSlug }}">
+          <td data-label="Dato">{{ .dato }}</td>
+          <td data-label="Tid">{{ .tid_start }}–{{ .tid_slutt }}</td>
+          <td data-label="Gren">
+            <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
+          </td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+  (function() {
+    var btns = document.querySelectorAll('.treningsfilter__btn');
+    if (!btns.length) return;
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filter = btn.getAttribute('data-filter');
+        btns.forEach(function(b) { b.classList.remove('treningsfilter__btn--active'); });
+        btn.classList.add('treningsfilter__btn--active');
+        var rows = document.querySelectorAll('.treningstabell tbody tr');
+        rows.forEach(function(row) {
+          if (filter === 'alle' || row.getAttribute('data-gren') === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+  </script>
+
+{{ else }}
+  <p class="text-center" style="color: var(--color-text-secondary);">Ingen kommende treninger er lagt inn enda.</p>
+{{ end }}
+{{ end }}

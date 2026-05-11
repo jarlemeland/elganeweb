@@ -1,0 +1,17 @@
+{{ $color := .Params.color | default "#3fb970" }}
+
+<article class="card card--gren" style="--gren-color: {{ $color }}">
+  {{ with .Params.image }}
+  <img src="{{ . }}" alt="{{ $.Title }}" class="card__image" loading="lazy">
+  {{ end }}
+  <div class="card__content">
+    <h3 class="card__title">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h3>
+    <p class="card__excerpt">{{ .Description | default (.Summary | truncate 100) }}</p>
+    {{ with .Params.treningsdager }}
+    <p class="card__meta">{{ . }} {{ with $.Params.treningstid }}· {{ . }}{{ end }}</p>
+    {{ end }}
+    <a href="{{ .Permalink }}" class="btn btn--small btn--secondary">Les mer</a>
+  </div>
+</article>

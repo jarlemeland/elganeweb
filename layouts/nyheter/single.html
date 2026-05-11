@@ -1,0 +1,43 @@
+{{ define "main" }}
+<article class="article">
+  <div class="container container--narrow">
+    {{ partial "breadcrumb.html" . }}
+
+    <header class="article__header">
+      <h1 class="article__title">{{ .Title }}</h1>
+      <div class="article__meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "2. January 2006" }}
+        </time>
+        {{ with .Params.kategorier }}
+        <span>
+          {{ range . }}
+          {{ $slug := . | urlize }}
+          {{ $class := "kategori-badge" }}
+          {{ if eq . "ATV & Sidevogn" }}{{ $class = "kategori-badge kategori-badge--atv" }}
+          {{ else if eq . "MX" }}{{ $class = "kategori-badge kategori-badge--mx" }}
+          {{ else if eq . "Speedway" }}{{ $class = "kategori-badge kategori-badge--speedway" }}
+          {{ else if eq . "Arrangementer" }}{{ $class = "kategori-badge kategori-badge--arrangementer" }}
+          {{ else }}{{ $class = "kategori-badge kategori-badge--nyheter" }}
+          {{ end }}
+          <a href="/kategorier/{{ $slug }}/" class="{{ $class }}">{{ . }}</a>
+          {{ end }}
+        </span>
+        {{ end }}
+      </div>
+    </header>
+
+    {{ with .Params.image }}
+    <img src="{{ . }}" alt="{{ $.Title }}" class="article__featured-image">
+    {{ end }}
+
+    <div class="article__content">
+      {{ .Content }}
+    </div>
+
+    <div class="mt-xl">
+      <a href="/nyheter/" class="btn btn--secondary btn--small">&larr; Tilbake til nyheter</a>
+    </div>
+  </div>
+</article>
+{{ end }}
