@@ -350,21 +350,25 @@ hr {
    6. Hero Section
    -------------------------------------------------------------------------- */
 .hero {
-  background-color: var(--color-dark);
+  background-color: #ffffff;
   background-size: cover;
   background-position: center;
   position: relative;
-  padding: var(--space-3xl) 0;
-  min-height: 400px;
+  padding: var(--space-xs) 0 0 0;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
+}
+
+.hero + .section {
+  padding-top: var(--space-lg);
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.6));
+  background: none;
 }
 
 .hero__content {
@@ -396,13 +400,24 @@ hr {
   color: var(--color-primary);
 }
 
+.hero__logo {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   .hero {
-    min-height: 300px;
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xs) 0;
   }
   .hero__title {
     font-size: var(--font-size-3xl);
+  }
+  .hero__logo {
+    max-width: 280px;
   }
 }
 
@@ -552,6 +567,42 @@ hr {
 .treningsfilter__btn--speedway.treningsfilter__btn--active {
   background: var(--color-speedway);
   border-color: var(--color-speedway);
+}
+
+/* General tables (from markdown content) */
+.article__content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  font-size: var(--font-size-base);
+}
+
+.article__content th,
+.article__content td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article__content th {
+  background-color: var(--color-dark);
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.article__content tr:hover {
+  background-color: var(--color-bg-light);
+}
+
+@media (max-width: 768px) {
+  .article__content table {
+    font-size: var(--font-size-sm);
+  }
+
+  .article__content th,
+  .article__content td {
+    padding: var(--space-xs) var(--space-sm);
+  }
 }
 
 .treningstabell-wrapper {
@@ -1018,7 +1069,7 @@ hr {
 }
 
 .cta-section {
-  background-color: var(--color-primary);
+  background-color: #163B24;
   color: var(--color-text-light);
   text-align: center;
   padding: var(--space-3xl) 0;

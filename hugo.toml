@@ -50,39 +50,44 @@ title = "Elgane Motorsykkelklubb"
   weight = 1
 
 [[menus.main]]
+  name = "Bli medlem"
+  url = "/bli-medlem/"
+  weight = 2
+
+[[menus.main]]
   name = "Kontakt"
   url = "/kontakt/"
-  weight = 2
+  weight = 3
 
 [[menus.main]]
   name = "ATV & Sidevogn"
   url = "/grener/atv-sidevogn/"
-  weight = 3
+  weight = 4
 
 [[menus.main]]
   name = "MX"
   url = "/grener/mx/"
-  weight = 4
+  weight = 5
 
 [[menus.main]]
   name = "Speedway"
   url = "/grener/speedway/"
-  weight = 5
+  weight = 6
 
 [[menus.main]]
   name = "Treningsplan"
   url = "/treningsplan/"
-  weight = 6
+  weight = 7
 
 [[menus.main]]
   name = "Nyheter"
   url = "/nyheter/"
-  weight = 7
+  weight = 8
 
 [[menus.main]]
   name = "Om klubben"
   url = "/om-klubben/"
-  weight = 8
+  weight = 9
 
 # Footer menu
 [[menus.footer]]
