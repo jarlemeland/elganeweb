@@ -12,8 +12,7 @@ type: "kontakt"
 **Telefon:** [klubbens telefonnummer]
 
 **Besøksadresse:**
-[Adresse til klubbhuset/banen]
-[Postnummer og sted]
+Elgane, 4360 Varhaug
 
 **Organisasjonsnummer:** [Org.nr]
 
