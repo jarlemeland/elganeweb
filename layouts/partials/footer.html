@@ -4,6 +4,9 @@
       <div class="footer-section">
         <h3 class="footer-heading">Elgane Motorsykkelklubb</h3>
         <p class="footer-text">Motorsykkelklubb med ATV & Sidevogn, MX og Speedway.</p>
+        {{ with .Site.Params.address }}
+        <p class="footer-text">{{ . }}</p>
+        {{ end }}
         {{ with .Site.Params.email }}
         <p class="footer-text">
           <a href="mailto:{{ . }}" class="footer-link">{{ . }}</a>
