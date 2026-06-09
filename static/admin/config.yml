@@ -122,6 +122,88 @@ collections:
           - { label: "Beskrivelse", name: "description", widget: "string", required: false }
           - { label: "Innhold", name: "body", widget: "markdown" }
 
+  # --- EVENTS CALENDAR ---
+  - name: "arrangementer"
+    label: "Arrangementer"
+    files:
+      - label: "Arrangementer"
+        name: "arrangementer"
+        file: "data/arrangementer.yaml"
+        fields:
+          - { label: "Sesong", name: "sesong", widget: "string" }
+          - { label: "Sist oppdatert", name: "oppdatert", widget: "string", hint: "YYYY-MM-DD" }
+          - label: "Arrangementer"
+            name: "arrangementer"
+            widget: "list"
+            summary: "{{fields.dato}} - {{fields.navn}} ({{fields.gren}})"
+            fields:
+              - { label: "Dato", name: "dato", widget: "string", hint: "Format: YYYY-MM-DD (f.eks. 2026-07-04)" }
+              - { label: "Navn", name: "navn", widget: "string", hint: "Navn på arrangementet" }
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options:
+                  - { label: "Konkurranse", value: "konkurranse" }
+                  - { label: "Arrangement", value: "arrangement" }
+                  - { label: "Kurs", value: "kurs" }
+                  - { label: "Møte", value: "mote" }
+                  - { label: "Vedlikehold", value: "vedlikehold" }
+              - label: "Gren"
+                name: "gren"
+                widget: "select"
+                options:
+                  - "ATV & Sidevogn"
+                  - "MX"
+                  - "Speedway"
+                  - "Alle"
+              - { label: "Sted", name: "sted", widget: "string", hint: "F.eks. Elgane, Sykkylven" }
+              - { label: "Starttid", name: "tid_start", widget: "string", required: false, default: "", hint: "Format: HH:MM (valgfritt)" }
+              - { label: "Sluttid", name: "tid_slutt", widget: "string", required: false, default: "", hint: "Format: HH:MM (valgfritt)" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options:
+                  - { label: "Bekreftet", value: "bekreftet" }
+                  - { label: "Planlagt", value: "planlagt" }
+                  - { label: "Avlyst", value: "avlyst" }
+                  - { label: "Utsatt", value: "utsatt" }
+                default: "bekreftet"
+              - { label: "Beskrivelse", name: "beskrivelse", widget: "string", required: false, default: "" }
+              - { label: "Lenke (URL)", name: "lenke", widget: "string", required: false, default: "", hint: "Lenke til påmelding e.l. (f.eks. https://www.isonen.no/...)" }
+              - { label: "Lenketekst", name: "lenke_tekst", widget: "string", required: false, default: "", hint: "Tekst på lenkeknappen (standard: Påmelding)" }
+              - { label: "Merknad", name: "merknad", widget: "string", required: false, default: "" }
+
+  # --- BOARD (STYRET) ---
+  - name: "styret"
+    label: "Styret"
+    files:
+      - label: "Styret"
+        name: "styret"
+        file: "data/styret.yaml"
+        fields:
+          - { label: "Sesong", name: "sesong", widget: "string", hint: "F.eks. 2026" }
+          - { label: "Sist oppdatert", name: "oppdatert", widget: "string", hint: "YYYY-MM-DD" }
+          - label: "Medlemmer"
+            name: "medlemmer"
+            widget: "list"
+            summary: "{{fields.verv}} - {{fields.navn}}"
+            fields:
+              - { label: "Verv", name: "verv", widget: "string", hint: "F.eks. Styreleder, Nestleder, Kasserer, Styrerepresentant Speedway" }
+              - { label: "Navn", name: "navn", widget: "string" }
+              - { label: "Telefon", name: "telefon", widget: "string", required: false, default: "", hint: "Mobilnummer uten landkode (8 siffer)" }
+              - { label: "E-post", name: "epost", widget: "string", required: false, default: "" }
+              - label: "Gren (valgfritt)"
+                name: "gren"
+                widget: "select"
+                required: false
+                default: ""
+                options:
+                  - { label: "Ingen", value: "" }
+                  - "ATV & Sidevogn"
+                  - "MX"
+                  - "Speedway"
+              - { label: "Merknad", name: "merknad", widget: "string", required: false, default: "", hint: "Valgfri tilleggsinfo, f.eks. 'Kontaktperson ATV'" }
+
   # --- TRAINING SCHEDULE ---
   - name: "treningsplan"
     label: "Treningsplan"

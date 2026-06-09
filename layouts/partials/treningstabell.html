@@ -48,14 +48,14 @@
   {{ end }}
 
   {{ if and (not $grenFilter) (gt (len $grener) 1) }}
-  <div class="treningsfilter">
-    <button class="treningsfilter__btn treningsfilter__btn--active" data-filter="alle">Alle</button>
+  <div class="treningsfilter" role="group" aria-label="Filtrer treninger etter gren">
+    <button type="button" class="treningsfilter__btn treningsfilter__btn--active" data-filter="alle" aria-pressed="true">Alle</button>
     {{ range $grener }}
     {{ $slug := "atv" }}
     {{ if eq . "MX" }}{{ $slug = "mx" }}
     {{ else if eq . "Speedway" }}{{ $slug = "speedway" }}
     {{ end }}
-    <button class="treningsfilter__btn treningsfilter__btn--{{ $slug }}" data-filter="{{ $slug }}">{{ . }}</button>
+    <button type="button" class="treningsfilter__btn treningsfilter__btn--{{ $slug }}" data-filter="{{ $slug }}" aria-pressed="false">{{ . }}</button>
     {{ end }}
   </div>
   {{ end }}
@@ -91,21 +91,54 @@
   (function() {
     var btns = document.querySelectorAll('.treningsfilter__btn');
     if (!btns.length) return;
+
+    var active = 'alle';
+
+    function parseHash() {
+      var hash = window.location.hash.replace(/^#/, '');
+      if (!hash) return;
+      hash.split('&').forEach(function(pair) {
+        var kv = pair.split('=');
+        if (kv[0] === 'gren' && kv[1]) active = decodeURIComponent(kv[1]);
+      });
+    }
+
+    function writeHash() {
+      var newHash = (active && active !== 'alle') ? '#gren=' + encodeURIComponent(active) : '';
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search + newHash);
+      }
+    }
+
+    function syncButtons() {
+      btns.forEach(function(b) {
+        var isActive = b.getAttribute('data-filter') === active;
+        b.classList.toggle('treningsfilter__btn--active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    function applyFilter() {
+      var rows = document.querySelectorAll('.treningstabell tbody tr');
+      rows.forEach(function(row) {
+        var match = (active === 'alle' || row.getAttribute('data-gren') === active);
+        row.style.display = match ? '' : 'none';
+      });
+    }
+
     btns.forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var filter = btn.getAttribute('data-filter');
-        btns.forEach(function(b) { b.classList.remove('treningsfilter__btn--active'); });
-        btn.classList.add('treningsfilter__btn--active');
-        var rows = document.querySelectorAll('.treningstabell tbody tr');
-        rows.forEach(function(row) {
-          if (filter === 'alle' || row.getAttribute('data-gren') === filter) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        });
+        active = btn.getAttribute('data-filter');
+        syncButtons();
+        writeHash();
+        applyFilter();
       });
     });
+
+    // Init from URL hash on load
+    parseHash();
+    syncButtons();
+    applyFilter();
   })();
   </script>
 

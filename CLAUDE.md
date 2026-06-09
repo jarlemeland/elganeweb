@@ -11,7 +11,57 @@ Elgane Motorsykkelklubb is a Norwegian motorsport club with three disciplines:
 - MX (Motocross)
 - Speedway
 
-The club is building a new WordPress-based website to replace their current IdrettenOnline platform.
+The website is a Hugo static site deployed on Netlify.
+
+## Events Calendar (Arrangementer)
+
+Events are stored in `data/arrangementer.yaml` and rendered via `layouts/partials/arrangementer.html`.
+
+### Adding events
+
+Each event entry has these fields:
+- `dato` — YYYY-MM-DD
+- `navn` — event name
+- `type` — `konkurranse` | `arrangement` | `kurs` | `mote` | `vedlikehold`
+- `gren` — `ATV & Sidevogn` | `MX` | `Speedway` | `Alle`
+- `sted` — location (use `Elgane` for home events so the Elgane filter works)
+- `tid_start` / `tid_slutt` — HH:MM (optional)
+- `status` — `bekreftet` | `planlagt` | `avlyst` | `utsatt`
+- `beskrivelse` — short description (optional)
+- `lenke` — signup/registration URL (optional, see below)
+- `lenke_tekst` — button label (defaults to "Påmelding" if empty)
+- `merknad` — extra note (optional)
+
+### isonen.no signup links
+
+Registration links use isonen.no with these query parameters:
+
+```
+https://isonen.no/?search={location}&offset=0&sport={sport}&startDate={start_ms}&endDate={end_ms}
+```
+
+**Parameters:**
+- `search` — location or organizer name, lowercase (e.g. `elgane`, `skaun`, `lunner`, `trondhjem`)
+- `sport` — the isonen sport filter:
+  - ATV/Quad events: `Quad`
+  - MX/Motocross events: `Motocross`
+  - Speedway events: `Trackracing`
+- `startDate` — Unix timestamp in **milliseconds** for the event date
+- `endDate` — Unix timestamp in **milliseconds**, set to **+2 days** after startDate to avoid duplicate results
+- `offset` — always `0`
+
+**Calculating timestamps (Python):**
+```python
+import datetime
+d = datetime.datetime.strptime("2026-07-04", "%Y-%m-%d")
+start_ms = int(d.timestamp() * 1000)
+end_ms = int((d + datetime.timedelta(days=2)).timestamp() * 1000)
+```
+
+**Example:**
+```
+https://isonen.no/?search=elgane&offset=0&sport=Quad&startDate=1783116000000&endDate=1783288800000
+```
 
 ## Technology Stack
 

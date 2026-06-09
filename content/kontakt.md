@@ -7,45 +7,20 @@ type: "kontakt"
 
 ## Kontaktinformasjon
 
-**E-post:** [klubbens hovedepost]
+**E-post:** elganemk@gmail.com
 
-**Telefon:** [klubbens telefonnummer]
+**Telefon:** 51432559
 
 **Besøksadresse:**
 Elgane, 4360 Varhaug
 
-**Organisasjonsnummer:** [Org.nr]
+## Styret og greneansvarlige
 
-## Styret
-
-**Leder: [Navn]**
-- Telefon: [nummer]
-- E-post: [epost]
-
-**Nestleder: [Navn]**
-- Telefon: [nummer]
-- E-post: [epost]
-
-**Kasserer: [Navn]**
-- E-post: [epost]
-
-## Greneansvarlige
-
-**ATV og Sidevogn: [Navn]**
-- Telefon: [nummer]
-- E-post: [epost]
-
-**MX: [Navn]**
-- Telefon: [nummer]
-- E-post: [epost]
-
-**Speedway: [Navn]**
-- Telefon: [nummer]
-- E-post: [epost]
+{{< styret >}}
 
 ## Besøk oss
 
-Du er velkommen til å komme på besøk på en treningsdag!
+Du er velkommen til å komme på besøk på en treningsdag! Ta kontakt på forhånd med grenansvarlig.
 
 - **ATV/Sidevogn:** Lørdager kl. 11:00–14:00 (16:00) og torsdager kl. 17:00–20:00
 - **MX:** Søndager kl. 10:00–16:00
@@ -55,4 +30,4 @@ Sjekk treningsplanen for bekreftede treningsdatoer.
 
 ## Responstid
 
-Vi besvarer henvendelser så raskt som mulig, normalt innen 1–3 virkedager. Husk at vi er frivillige, så det kan ta litt tid i travle perioder!
+Vi besvarer henvendelser så raskt som mulig. Husk at vi er frivillige, så det kan ta litt tid i travle perioder!

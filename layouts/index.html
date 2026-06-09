@@ -2,6 +2,47 @@
 
 {{ partial "hero.html" . }}
 
+{{/* Video Banner */}}
+<section class="video-banner" aria-label="Bakgrunnsvideo fra banen">
+  <div class="video-banner__overlay"></div>
+  <video class="video-banner__video" autoplay muted loop playsinline poster="/video/hero-bg-poster.jpg">
+    <source src="/video/hero-bg.mp4" type="video/mp4">
+  </video>
+  <button type="button" class="video-banner__toggle" data-video-toggle aria-pressed="false" aria-label="Stopp bakgrunnsvideo">
+    <span class="video-banner__toggle-icon" data-video-icon aria-hidden="true">⏸</span>
+  </button>
+</section>
+
+<script>
+(function() {
+  var btn = document.querySelector('[data-video-toggle]');
+  var video = document.querySelector('.video-banner__video');
+  if (!btn || !video) return;
+  var icon = btn.querySelector('[data-video-icon]');
+
+  function setState(paused) {
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Spill av bakgrunnsvideo' : 'Stopp bakgrunnsvideo');
+    if (icon) icon.textContent = paused ? '▶' : '⏸';
+  }
+
+  btn.addEventListener('click', function() {
+    if (video.paused) {
+      video.play();
+      setState(false);
+    } else {
+      video.pause();
+      setState(true);
+    }
+  });
+
+  // Respect prefers-reduced-motion: video is hidden via CSS, hide the control too
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    btn.style.display = 'none';
+  }
+})();
+</script>
+
 {{/* Branches Section */}}
 <section class="section">
   <div class="container">

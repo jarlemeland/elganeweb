@@ -6,9 +6,9 @@ color: "#ff9800"
 treningsdager: "Søndager"
 treningstid: "10:00 – 16:00"
 sesong: "April – Oktober"
-kontaktperson: "[Navn]"
-kontaktepost: "[epost]"
-kontakttelefon: "[nummer]"
+kontaktperson: "Magne Klingsheim"
+kontaktepost: "klingsheim67@gmail.com"
+kontakttelefon: "46639733"
 image: ""
 ---
 
@@ -29,17 +29,6 @@ Motocross (MX) er motorsykkelsport som foregår på en utformet off-road bane me
 - Fysisk krevende sport
 - For alle nivåer fra nybegynner til elite
 
-## Vår MX-bane
-
-Elgane har en godt vedlikeholdt motocrossbane med:
-- Lengde: [ca. XXX meter]
-- Ulike hopp og seksjoner for alle nivåer
-- Både tekniske og raske partier
-- Sikkerhetsnett og sikringsområder
-- Regelmessig vedlikehold og preparering
-
-Banen deles med ATV-seksjonen og er tilpasset både treningskjøring og racingkjøring.
-
 ## Treninger
 
 **Treningssesongen:**
@@ -50,10 +39,9 @@ Banen deles med ATV-seksjonen og er tilpasset både treningskjøring og racingkj
 
 **Hva som trengs for å trene:**
 - Medlemskap i Elgane Motorsykkelklubb
-- Gyldig NMF-lisens
-- Egen motocross-motorsykkel
-- Komplett sikkerhetsutstyr
-- Treningsavgift betales per treningsdag
+- Gyldig NMF-lisens (kom og prøv lisens tilgjengelig)
+- Egen motocross-motorsykkel (utlån tilgjengelig)
+- Komplett sikkerhetsutstyr (utlån tilgjengelig)
 
 Ny i MX? [Kontakt oss](/kontakt/) for informasjon og veiledning!
 
@@ -133,6 +121,11 @@ Elgane arrangerer årlig klubbmesterskap i MX med flere løp gjennom sesongen og
 
 Vil du bare trene? Det er helt greit! Mange kjører kun for trening og moro. Du velger selv!
 
+## Se også
+
+- [Kommende MX-arrangementer →](/arrangementer/#gren=mx)
+- [Treningsplan for MX →](/treningsplan/#gren=mx)
+
 ## Sikkerhet
 
 **Sikkerhetsledere:**
@@ -154,25 +147,22 @@ Alle treninger og konkurranser har godkjente sikkerhetsledere til stede.
 ## Ofte stilte spørsmål
 
 **Hvor gammel må jeg være for å kjøre MX?**
-[Fyll inn aldersgrenser iht. NMF-regler, typisk fra ca. 6–8 år med 65cc]
+NMF har egne aldersgrenser per motorklasse. Ta kontakt med MX-ansvarlig for konkrete grenser som passer ditt nivå.
 
 **Trenger jeg egen motorsykkel?**
-Ja, klubben har ikke motorsykler til utlån. Vi hjelper gjerne med råd om kjøp.
+Klubben har MX-sykler tilgjengelig for å prøve. Etter hvert må man ha egen sykkel.
 
 **Hva koster det å holde på med MX?**
-- Medlemskap: [Pris] per år
-- NMF-lisens: [Pris]
-- Treningsavgift: [Pris] per dag
-- Utstyr og motorsykkel: Varierer
+Se [Bli medlem](/bli-medlem/) for medlemskontingent. NMF-lisens kjøpes separat fra Norges Motorsportforbund. Utstyr og motorsykkel varierer.
 
 **Må jeg konkurrere?**
 Nei, mange kjører kun for trening og moro. Det er helt opp til deg!
 
 ## Kontakt MX-ansvarlig
 
-**[Navn på MX-ansvarlig]**
-- Telefon: [nummer]
-- E-post: [epost]
+**Magne Klingsheim**
+- Telefon: 46639733
+- E-post: klingsheim67@gmail.com
 
 Eller bruk [kontaktskjemaet](/kontakt/) på nettsiden.
 
