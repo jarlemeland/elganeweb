@@ -18,7 +18,7 @@
   --color-text-heading: #1a1a1a;
   --color-text-light: #ffffff;
   --color-text-secondary: #666666;
-  --color-text-muted: #999999;
+  --color-text-muted: #b3b3b3;  /* bumped from #999 for AAA on dark footer (was 4.5:1 → ~7.5:1) */
 
   /* Backgrounds */
   --color-bg: #ffffff;
@@ -67,7 +67,13 @@
   --color-border: #e0e0e0;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* Motion */
   --transition: 0.2s ease;
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);        /* easeOutQuint — quick, decisive */
+  --ease-overshoot: cubic-bezier(0.34, 1.56, 0.64, 1); /* gentle bounce, reserve for CTA */
+  --transition-snap: 0.22s var(--ease-snap);
+  --transition-overshoot: 0.32s var(--ease-overshoot);
 }
 
 /* --------------------------------------------------------------------------
@@ -161,7 +167,7 @@ blockquote {
 
 hr {
   border: none;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-border);
   margin: var(--space-2xl) 0;
 }
 
@@ -363,11 +369,11 @@ hr {
    6. Hero Section
    -------------------------------------------------------------------------- */
 .hero {
-  background-color: #ffffff;
+  background-color: var(--color-bg);
   background-size: cover;
   background-position: center;
   position: relative;
-  padding: var(--space-xs) 0 0 0;
+  padding: var(--space-md) 0 0 0;
   margin-bottom: 0;
   display: flex;
   align-items: center;
@@ -424,7 +430,7 @@ hr {
 
 @media (max-width: 768px) {
   .hero {
-    padding: var(--space-xs) 0;
+    padding: var(--space-sm) 0;
   }
   .hero__title {
     font-size: var(--font-size-3xl);
@@ -486,7 +492,7 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color var(--transition), transform var(--transition);
+  transition: background-color var(--transition-snap), transform var(--transition-overshoot);
 }
 
 .video-banner__toggle:hover {
@@ -527,7 +533,8 @@ hr {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  transition: all var(--transition);
+  transition: background-color var(--transition-snap), border-color var(--transition-snap),
+              color var(--transition-snap), transform var(--transition-overshoot);
 }
 
 .btn--primary {
@@ -540,6 +547,11 @@ hr {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   color: var(--color-text-light);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
 }
 
 .btn--secondary {
@@ -566,7 +578,7 @@ hr {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition-snap), transform var(--transition-snap);
 }
 
 .card:hover {
@@ -633,7 +645,7 @@ hr {
   color: var(--color-text);
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  transition: border-color var(--transition-snap), background-color var(--transition-snap), color var(--transition-snap);
 }
 
 .treningsfilter__btn:hover {
@@ -643,7 +655,7 @@ hr {
 .treningsfilter__btn--active {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-text-light);
 }
 
 .treningsfilter__btn--atv.treningsfilter__btn--active {
@@ -720,7 +732,7 @@ hr {
 
 .treningstabell td {
   padding: var(--space-md);
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
   vertical-align: middle;
 }
 
@@ -795,7 +807,7 @@ hr {
   .treningstabell tbody tr {
     display: block;
     margin-bottom: var(--space-md);
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--space-md);
   }
@@ -878,7 +890,7 @@ hr {
 
 .arr-tabell td {
   padding: var(--space-md);
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
   vertical-align: middle;
 }
 
@@ -977,7 +989,7 @@ hr {
   color: var(--color-text-secondary);
   cursor: pointer;
   padding: var(--space-md) 0;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-border);
 }
 
 .arr-past__toggle:hover {
@@ -1001,7 +1013,7 @@ hr {
   .arr-tabell tbody tr {
     display: block;
     margin-bottom: var(--space-md);
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--space-md);
   }
@@ -1026,7 +1038,7 @@ hr {
   }
 
   .arr-tabell td[data-label="Dato"] {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--space-sm);
     margin-bottom: var(--space-xs);
   }
@@ -1084,7 +1096,7 @@ hr {
   padding: var(--space-md);
   font-family: var(--font-body);
   font-size: var(--font-size-base);
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
   transition: border-color var(--transition);
   background-color: var(--color-bg);
@@ -1204,7 +1216,7 @@ hr {
 
 .pagination a {
   color: var(--color-text);
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-border);
 }
 
 .pagination a:hover {
@@ -1388,7 +1400,7 @@ hr {
 }
 
 .cta-section {
-  background-color: #163B24;
+  background-color: var(--color-primary-dark);
   color: var(--color-text-light);
   text-align: center;
   padding: var(--space-3xl) 0;
@@ -1548,12 +1560,12 @@ hr {
 
 .styret-kort {
   background-color: var(--color-bg);
-  border: 1px solid var(--color-border, #e5e5e5);
+  border: 1px solid var(--color-border);
   border-left: 4px solid var(--color-primary);
   border-radius: var(--border-radius);
   padding: var(--space-lg);
   box-shadow: var(--shadow);
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition-snap), transform var(--transition-snap);
   display: flex;
   flex-direction: column;
 }
