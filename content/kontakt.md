@@ -23,7 +23,7 @@ Elgane, 4360 Varhaug
 Du er velkommen til å komme på besøk på en treningsdag! Ta kontakt på forhånd med grenansvarlig.
 
 - **ATV/Sidevogn:** Lørdager kl. 11:00–14:00 (16:00) og torsdager kl. 17:00–20:00
-- **MX:** Søndager kl. 10:00–16:00
+- **MX:** Søndager kl. 10:00–16:00 og tirsdager kl. 17:00–20:00
 - **Speedway:** Mandager og onsdager kl. 17:00–20:00
 
 Sjekk treningsplanen for bekreftede treningsdatoer.

@@ -7,7 +7,7 @@
 # Når sesongen er over, oppdater sesongstart/sesongslutt og ev. reglene.
 
 sesong: "2026"
-oppdatert: "2026-06-09"
+oppdatert: "2026-06-09"  # MX Tuesdays added
 sesongstart: "2026-04-01"
 sesongslutt: "2026-10-31"
 
@@ -28,6 +28,9 @@ regler:
       - ukedag: 0  # søndag
         tid_start: "10:00"
         tid_slutt: "16:00"
+      - ukedag: 2  # tirsdag
+        tid_start: "17:00"
+        tid_slutt: "20:00"
 
   - gren: "Speedway"
     okter:
