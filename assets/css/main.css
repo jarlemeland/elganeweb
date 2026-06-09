@@ -1503,6 +1503,26 @@ hr {
   clip: rect(0, 0, 0, 0) !important;
 }
 
+/* Training row: cancelled state and inline merknad */
+.trening-rad--avlyst td {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.trening-rad--avlyst .status-badge,
+.trening-rad--avlyst .gren-badge,
+.trening-rad--avlyst .trening-merknad {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.trening-merknad {
+  display: inline;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
 /* --------------------------------------------------------------------------
    21. Styret (Board of Directors)
    -------------------------------------------------------------------------- */

@@ -2,6 +2,11 @@
      Usage: {{ partial "treningstabell.html" (dict "context" . "limit" 5 "gren" "MX") }}
      - limit: max number of rows (0 = all)
      - gren: filter by discipline name (empty = all)
+
+     The schedule is generated at build time from data/treningsplan.yaml:
+     - regler[] defines weekly recurrence (per gren, per ukedag/okt)
+     - overstyringer[] applies date-specific changes (cancellation,
+       sikkerhetsleder assignment, merknad, etc.)
 */}}
 
 {{ $limit := 0 }}
@@ -16,21 +21,65 @@
   {{ $compact = .compact | default false }}
 {{ end }}
 
-{{ with hugo.Data.treninger }}
+{{ with hugo.Data.treningsplan }}
+{{ $cfg := . }}
 {{ $now := now.Format "2006-01-02" }}
+
+{{/* Generate schedule from rules, starting at max(sesongstart, today) */}}
+{{ $startDate := $cfg.sesongstart }}
+{{ if lt $startDate $now }}{{ $startDate = $now }}{{ end }}
+
+{{ $startTime := time.AsTime $startDate }}
+{{ $endTime := time.AsTime $cfg.sesongslutt }}
 {{ $upcoming := slice }}
 
-{{ range .treninger }}
-  {{ $show := true }}
-  {{/* Filter past dates */}}
-  {{ if lt .dato $now }}{{ $show = false }}{{ end }}
-  {{/* Filter by discipline if specified */}}
-  {{ if and (ne $grenFilter "") (ne .gren $grenFilter) }}{{ $show = false }}{{ end }}
+{{ if ge $endTime.Unix $startTime.Unix }}
+  {{ $totalDays := int (div (sub $endTime.Unix $startTime.Unix) 86400) }}
 
-  {{ if $show }}
-    {{ $upcoming = $upcoming | append . }}
+  {{ range $offset := seq 0 $totalDays }}
+    {{ $d := $startTime.AddDate 0 0 $offset }}
+    {{ $dateStr := $d.Format "2006-01-02" }}
+    {{ $weekday := int $d.Weekday }}
+
+    {{ range $rule := $cfg.regler }}
+      {{/* Skip if filtering by gren and this rule doesn't match */}}
+      {{ if or (eq $grenFilter "") (eq $grenFilter $rule.gren) }}
+        {{ range $okt := $rule.okter }}
+          {{ if eq (int $okt.ukedag) $weekday }}
+            {{/* Base entry from rule */}}
+            {{ $entry := dict
+                "dato" $dateStr
+                "gren" $rule.gren
+                "tid_start" $okt.tid_start
+                "tid_slutt" $okt.tid_slutt
+                "sikkerhetsleder" ""
+                "status" "trenger_sikkerhetsleder"
+                "merknad" ""
+            }}
+
+            {{/* Apply matching overstyringer (any non-empty fields override) */}}
+            {{ range $ov := $cfg.overstyringer }}
+              {{ if eq $ov.dato $dateStr }}
+                {{ if or (not $ov.gren) (eq $ov.gren $rule.gren) }}
+                  {{ with $ov.status }}{{ $entry = merge $entry (dict "status" .) }}{{ end }}
+                  {{ with $ov.sikkerhetsleder }}{{ $entry = merge $entry (dict "sikkerhetsleder" .) }}{{ end }}
+                  {{ with $ov.merknad }}{{ $entry = merge $entry (dict "merknad" .) }}{{ end }}
+                  {{ with $ov.tid_start }}{{ $entry = merge $entry (dict "tid_start" .) }}{{ end }}
+                  {{ with $ov.tid_slutt }}{{ $entry = merge $entry (dict "tid_slutt" .) }}{{ end }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+
+            {{ $upcoming = $upcoming | append $entry }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}
+
+{{/* Sort chronologically */}}
+{{ $upcoming = sort $upcoming "dato" }}
 
 {{ if $upcoming }}
   {{/* Apply limit */}}
@@ -39,7 +88,7 @@
     {{ $display = first $limit $upcoming }}
   {{ end }}
 
-  {{/* Collect unique disciplines for filter */}}
+  {{/* Collect unique disciplines for filter UI */}}
   {{ $grener := slice }}
   {{ range $upcoming }}
     {{ if not (in $grener .gren) }}
@@ -75,8 +124,18 @@
         {{ if eq .gren "MX" }}{{ $grenSlug = "mx" }}
         {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
         {{ end }}
-        <tr data-gren="{{ $grenSlug }}">
-          <td data-label="Dato">{{ .dato }}</td>
+        {{ $rowClass := "" }}
+        {{ if eq .status "avlyst" }}{{ $rowClass = "trening-rad--avlyst" }}{{ end }}
+        <tr data-gren="{{ $grenSlug }}"{{ with $rowClass }} class="{{ . }}"{{ end }}>
+          <td data-label="Dato">
+            {{ $d := time .dato }}
+            {{ $d.Day }}.
+            {{ index (slice "" "jan" "feb" "mar" "apr" "mai" "jun" "jul" "aug" "sep" "okt" "nov" "des") $d.Month }}
+            {{ $d.Year }}
+            {{ with .merknad }}<span class="trening-merknad"> · {{ . }}</span>{{ end }}
+            {{ if eq .status "avlyst" }}<span class="status-badge status-badge--avlyst">Avlyst</span>{{ end }}
+            {{ if eq .status "utsatt" }}<span class="status-badge status-badge--utsatt">Utsatt</span>{{ end }}
+          </td>
           <td data-label="Tid">{{ .tid_start }}–{{ .tid_slutt }}</td>
           <td data-label="Gren">
             <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>

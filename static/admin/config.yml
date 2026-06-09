@@ -205,23 +205,27 @@ collections:
               - { label: "Merknad", name: "merknad", widget: "string", required: false, default: "", hint: "Valgfri tilleggsinfo, f.eks. 'Kontaktperson ATV'" }
 
   # --- TRAINING SCHEDULE ---
+  # Treningsplanen genereres automatisk fra ukentlige regler.
+  # Bruk "Overstyringer" for å markere avlyste treninger eller registrere
+  # sikkerhetsleder for en spesifikk dato.
   - name: "treningsplan"
     label: "Treningsplan"
     files:
-      - label: "Treningsdager"
-        name: "treninger"
-        file: "data/treninger.yaml"
+      - label: "Treningsplan"
+        name: "treningsplan"
+        file: "data/treningsplan.yaml"
         fields:
-          - { label: "Sesong", name: "sesong", widget: "string" }
+          - { label: "Sesong", name: "sesong", widget: "string", hint: "F.eks. 2026" }
           - { label: "Sist oppdatert", name: "oppdatert", widget: "string", hint: "YYYY-MM-DD" }
-          - label: "Treninger"
-            name: "treninger"
+          - { label: "Sesongstart", name: "sesongstart", widget: "string", hint: "YYYY-MM-DD — første dag treninger kan starte" }
+          - { label: "Sesongslutt", name: "sesongslutt", widget: "string", hint: "YYYY-MM-DD — siste dag treninger kan kjøres" }
+
+          - label: "Ukentlige regler"
+            name: "regler"
             widget: "list"
-            summary: "{{fields.dato}} - {{fields.gren}} ({{fields.status}})"
+            summary: "{{fields.gren}}"
+            hint: "Endres sjelden — definerer hvilke ukedager hver gren trener."
             fields:
-              - { label: "Dato", name: "dato", widget: "string", hint: "Format: YYYY-MM-DD (f.eks. 2026-06-15)" }
-              - { label: "Starttid", name: "tid_start", widget: "string", default: "10:00", hint: "Format: HH:MM" }
-              - { label: "Sluttid", name: "tid_slutt", widget: "string", default: "16:00", hint: "Format: HH:MM" }
               - label: "Gren"
                 name: "gren"
                 widget: "select"
@@ -229,14 +233,55 @@ collections:
                   - "ATV & Sidevogn"
                   - "MX"
                   - "Speedway"
-              - { label: "Sikkerhetsleder", name: "sikkerhetsleder", widget: "string", required: false, hint: "Navn på sikkerhetsleder" }
+              - label: "Treningsøkter"
+                name: "okter"
+                widget: "list"
+                summary: "Ukedag {{fields.ukedag}} kl. {{fields.tid_start}}–{{fields.tid_slutt}}"
+                fields:
+                  - label: "Ukedag"
+                    name: "ukedag"
+                    widget: "select"
+                    options:
+                      - { label: "Søndag", value: 0 }
+                      - { label: "Mandag", value: 1 }
+                      - { label: "Tirsdag", value: 2 }
+                      - { label: "Onsdag", value: 3 }
+                      - { label: "Torsdag", value: 4 }
+                      - { label: "Fredag", value: 5 }
+                      - { label: "Lørdag", value: 6 }
+                  - { label: "Starttid", name: "tid_start", widget: "string", hint: "Format: HH:MM" }
+                  - { label: "Sluttid", name: "tid_slutt", widget: "string", hint: "Format: HH:MM" }
+
+          - label: "Overstyringer"
+            name: "overstyringer"
+            widget: "list"
+            summary: "{{fields.dato}}{{fields.gren | ternary ' (' ''}}{{fields.gren}}{{fields.gren | ternary ')' ''}} - {{fields.merknad}}"
+            hint: "Spesifikke datoer: avlyst, sikkerhetsleder, merknad, ev. endret tid. Hvis 'Gren' er tom, gjelder overstyringen for alle grener den dagen."
+            required: false
+            fields:
+              - { label: "Dato", name: "dato", widget: "string", hint: "Format: YYYY-MM-DD" }
+              - label: "Gren (valgfritt)"
+                name: "gren"
+                widget: "select"
+                required: false
+                default: ""
+                options:
+                  - { label: "Alle grener", value: "" }
+                  - "ATV & Sidevogn"
+                  - "MX"
+                  - "Speedway"
               - label: "Status"
                 name: "status"
                 widget: "select"
+                required: false
+                default: ""
                 options:
+                  - { label: "(uendret)", value: "" }
                   - { label: "Bekreftet", value: "bekreftet" }
                   - { label: "Avlyst", value: "avlyst" }
                   - { label: "Utsatt", value: "utsatt" }
                   - { label: "Trenger sikkerhetsleder", value: "trenger_sikkerhetsleder" }
-                default: "trenger_sikkerhetsleder"
-              - { label: "Merknad", name: "merknad", widget: "string", required: false }
+              - { label: "Sikkerhetsleder", name: "sikkerhetsleder", widget: "string", required: false, default: "", hint: "Navn på sikkerhetsleder for denne datoen" }
+              - { label: "Merknad", name: "merknad", widget: "string", required: false, default: "" }
+              - { label: "Starttid (overstyring)", name: "tid_start", widget: "string", required: false, default: "", hint: "Bruk hvis tiden avviker fra regelen" }
+              - { label: "Sluttid (overstyring)", name: "tid_slutt", widget: "string", required: false, default: "" }

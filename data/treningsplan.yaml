@@ -1,0 +1,56 @@
+# Treningsplan-konfigurasjon
+#
+# Treningsplanen genereres automatisk basert på ukentlige regler nedenfor.
+# Bruk "overstyringer" for å markere avlyste treninger, registrere
+# sikkerhetsleder for en bestemt dato, eller legge til merknader.
+#
+# Når sesongen er over, oppdater sesongstart/sesongslutt og ev. reglene.
+
+sesong: "2026"
+oppdatert: "2026-06-09"
+sesongstart: "2026-04-01"
+sesongslutt: "2026-10-31"
+
+# Ukentlige treningsregler.
+# ukedag: 0=søndag, 1=mandag, 2=tirsdag, 3=onsdag, 4=torsdag, 5=fredag, 6=lørdag
+regler:
+  - gren: "ATV & Sidevogn"
+    okter:
+      - ukedag: 6  # lørdag
+        tid_start: "11:00"
+        tid_slutt: "14:00"
+      - ukedag: 4  # torsdag
+        tid_start: "17:00"
+        tid_slutt: "20:00"
+
+  - gren: "MX"
+    okter:
+      - ukedag: 0  # søndag
+        tid_start: "10:00"
+        tid_slutt: "16:00"
+
+  - gren: "Speedway"
+    okter:
+      - ukedag: 1  # mandag
+        tid_start: "17:00"
+        tid_slutt: "20:00"
+      - ukedag: 3  # onsdag
+        tid_start: "17:00"
+        tid_slutt: "20:00"
+
+# Overstyringer for spesifikke datoer.
+# - Hvis 'gren' er satt, gjelder overstyringen kun for den grenen den dagen.
+# - Hvis 'gren' er tom, gjelder den for alle grener den dagen.
+# Mulige felter (alle valgfrie):
+#   status: bekreftet | avlyst | utsatt | trenger_sikkerhetsleder
+#   sikkerhetsleder: navn
+#   merknad: kort tekst
+#   tid_start / tid_slutt: HH:MM (overstyrer regelens tid)
+overstyringer:
+  - dato: "2026-05-24"
+    merknad: "Treningshelg alle grener"
+  - dato: "2026-05-25"
+    merknad: "Treningshelg alle grener"
+  - dato: "2026-06-08"
+    gren: "MX"
+    merknad: "Klubbmesterskap MX"
