@@ -1535,6 +1535,12 @@ hr {
   font-style: italic;
 }
 
+.trening-trenger-sl {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
 /* --------------------------------------------------------------------------
    21. Styret (Board of Directors)
    -------------------------------------------------------------------------- */
