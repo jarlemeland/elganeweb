@@ -3,8 +3,8 @@ title: "MX"
 description: "Motocross-seksjonen i Elgane Motorsykkelklubb. Off-road motorsykkelsport for alle nivåer."
 discipline: "mx"
 color: "#ff9800"
-treningsdager: "Søndager"
-treningstid: "10:00 – 16:00"
+treningsdager: "Søndager og tirsdager"
+treningstid: "Søn 10:00–16:00 · Tir 17:00–20:00"
 sesong: "April – Oktober"
 kontaktperson: "Magne Klingsheim"
 kontaktepost: "klingsheim67@gmail.com"
@@ -34,8 +34,8 @@ Motocross (MX) er motorsykkelsport som foregår på en utformet off-road bane me
 **Treningssesongen:**
 - Start: April (når banen er klar etter vinteren)
 - Slutt: September/oktober
-- Dag: Søndager
-- Tid: 10:00–16:00
+- Dager: Søndager og tirsdager
+- Tid: Søndag 10:00–16:00 · Tirsdag 17:00–20:00
 
 **Hva som trengs for å trene:**
 - Medlemskap i Elgane Motorsykkelklubb
