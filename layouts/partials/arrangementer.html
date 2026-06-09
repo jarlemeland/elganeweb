@@ -1,0 +1,254 @@
+{{/* Events calendar partial
+     Usage: {{ partial "arrangementer.html" (dict "context" . "gren" "ATV & Sidevogn" "sted" "Elgane") }}
+     - gren: filter by discipline name (empty = all)
+     - sted: filter by location (empty = all)
+*/}}
+
+{{ $grenFilter := "" }}
+{{ $stedFilter := "" }}
+{{ $ctx := . }}
+
+{{ if reflect.IsMap . }}
+  {{ $ctx = .context }}
+  {{ $grenFilter = .gren | default "" }}
+  {{ $stedFilter = .sted | default "" }}
+{{ end }}
+
+{{ with hugo.Data.arrangementer }}
+{{ $now := now.Format "2006-01-02" }}
+{{ $upcoming := slice }}
+{{ $past := slice }}
+
+{{/* Separate upcoming and past events */}}
+{{ range .arrangementer }}
+  {{ $matchGren := true }}
+  {{ $matchSted := true }}
+  {{ if and (ne $grenFilter "") (ne .gren $grenFilter) }}{{ $matchGren = false }}{{ end }}
+  {{ if and (ne $stedFilter "") (ne .sted $stedFilter) }}{{ $matchSted = false }}{{ end }}
+
+  {{ if and $matchGren $matchSted }}
+    {{ if ge .dato $now }}
+      {{ $upcoming = $upcoming | append . }}
+    {{ else }}
+      {{ $past = $past | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Sort by date */}}
+{{ $upcoming = sort $upcoming "dato" }}
+{{ $past = sort $past "dato" "desc" }}
+
+{{/* Collect unique disciplines and locations for filters */}}
+{{ $allEvents := .arrangementer }}
+{{ $grener := slice }}
+{{ $steder := slice }}
+{{ range $allEvents }}
+  {{ if not (in $grener .gren) }}
+    {{ $grener = $grener | append .gren }}
+  {{ end }}
+  {{ if and .sted (not (in $steder .sted)) }}
+    {{ $steder = $steder | append .sted }}
+  {{ end }}
+{{ end }}
+
+{{/* Filter buttons — always show all three disciplines + Elgane location */}}
+{{ if not $grenFilter }}
+<div class="arr-filter" role="group" aria-label="Filtrer arrangementer">
+  <div class="arr-filter__group">
+    <span class="arr-filter__label" id="arr-filter-gren-label">Gren:</span>
+    <div role="group" aria-labelledby="arr-filter-gren-label">
+      <button type="button" class="treningsfilter__btn treningsfilter__btn--active" data-filter-gren="alle" aria-pressed="true">Alle</button>
+      <button type="button" class="treningsfilter__btn treningsfilter__btn--atv" data-filter-gren="atv" aria-pressed="false">ATV &amp; Sidevogn</button>
+      <button type="button" class="treningsfilter__btn treningsfilter__btn--mx" data-filter-gren="mx" aria-pressed="false">MX</button>
+      <button type="button" class="treningsfilter__btn treningsfilter__btn--speedway" data-filter-gren="speedway" aria-pressed="false">Speedway</button>
+    </div>
+  </div>
+
+  <div class="arr-filter__group">
+    <span class="arr-filter__label" id="arr-filter-sted-label">Sted:</span>
+    <div role="group" aria-labelledby="arr-filter-sted-label">
+      <button type="button" class="treningsfilter__btn treningsfilter__btn--active" data-filter-sted="alle" aria-pressed="true">Alle steder</button>
+      <button type="button" class="treningsfilter__btn" data-filter-sted="elgane" aria-pressed="false">Elgane</button>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ if $upcoming }}
+  <div class="arr-tabell-wrapper">
+    <table class="arr-tabell">
+      <thead>
+        <tr>
+          <th>Dato</th>
+          <th>Arrangement</th>
+          <th>Gren</th>
+          <th>Sted</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $upcoming }}
+        {{ $grenSlug := "atv" }}
+        {{ if eq .gren "MX" }}{{ $grenSlug = "mx" }}
+        {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
+        {{ else if eq .gren "Alle" }}{{ $grenSlug = "alle" }}
+        {{ end }}
+        {{ $stedSlug := .sted | urlize }}
+        <tr data-gren="{{ $grenSlug }}" data-sted="{{ $stedSlug }}">
+          <td data-label="Dato">
+            <span class="arr-dato">
+              {{ $d := time .dato }}
+              <span class="arr-dato__day">{{ $d.Day }}.</span>
+              <span class="arr-dato__month">{{ index (slice "" "jan" "feb" "mar" "apr" "mai" "jun" "jul" "aug" "sep" "okt" "nov" "des") $d.Month }} {{ $d.Year }}</span>
+            </span>
+            {{ with .tid_start }}<span class="arr-tid">kl. {{ . }}{{ with $.tid_slutt }}–{{ . }}{{ end }}</span>{{ end }}
+          </td>
+          <td data-label="Arrangement">
+            <strong class="arr-navn">{{ .navn }}</strong>
+            {{ with .beskrivelse }}<span class="arr-beskrivelse">{{ . }}</span>{{ end }}
+            {{ with .merknad }}<span class="arr-merknad">{{ . }}</span>{{ end }}
+          </td>
+          <td data-label="Gren">
+            <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
+          </td>
+          <td data-label="Sted">{{ .sted }}</td>
+          <td data-label="Status">
+            {{ if eq .status "bekreftet" }}<span class="status-badge status-badge--bekreftet">Bekreftet</span>
+            {{ else if eq .status "planlagt" }}<span class="status-badge status-badge--planlagt">Planlagt</span>
+            {{ else if eq .status "avlyst" }}<span class="status-badge status-badge--avlyst">Avlyst</span>
+            {{ else if eq .status "utsatt" }}<span class="status-badge status-badge--utsatt">Utsatt</span>
+            {{ end }}
+          </td>
+          <td data-label="" class="arr-lenke-cell">
+            {{ if .lenke }}
+            <a href="{{ .lenke }}" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary arr-lenke-btn">
+              {{ with .lenke_tekst }}{{ . }}{{ else }}Påmelding{{ end }} →
+            </a>
+            {{ end }}
+          </td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+{{ else }}
+  <p class="text-center" style="color: var(--color-text-secondary); margin-top: var(--space-xl);">Ingen kommende arrangementer er lagt inn enda.</p>
+{{ end }}
+
+{{/* Past events (collapsed) */}}
+{{ if $past }}
+<details class="arr-past">
+  <summary class="arr-past__toggle">Tidligere arrangementer ({{ len $past }})</summary>
+  <div class="arr-tabell-wrapper">
+    <table class="arr-tabell arr-tabell--past">
+      <thead>
+        <tr>
+          <th>Dato</th>
+          <th>Arrangement</th>
+          <th>Gren</th>
+          <th>Sted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $past }}
+        {{ $grenSlug := "atv" }}
+        {{ if eq .gren "MX" }}{{ $grenSlug = "mx" }}
+        {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
+        {{ else if eq .gren "Alle" }}{{ $grenSlug = "alle" }}
+        {{ end }}
+        <tr data-gren="{{ $grenSlug }}">
+          <td data-label="Dato">
+            {{ $d := time .dato }}
+            {{ $d.Day }}.
+            {{ index (slice "" "jan" "feb" "mar" "apr" "mai" "jun" "jul" "aug" "sep" "okt" "nov" "des") $d.Month }}
+            {{ $d.Year }}
+          </td>
+          <td data-label="Arrangement">{{ .navn }}</td>
+          <td data-label="Gren"><span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span></td>
+          <td data-label="Sted">{{ .sted }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+</details>
+{{ end }}
+
+{{/* Filter JavaScript — two-dimensional (gren + sted), persisted via URL hash */}}
+<script>
+(function() {
+  var grenBtns = document.querySelectorAll('[data-filter-gren]');
+  var stedBtns = document.querySelectorAll('[data-filter-sted]');
+  if (!grenBtns.length) return;
+
+  var activeGren = 'alle';
+  var activeSted = 'alle';
+
+  function parseHash() {
+    var hash = window.location.hash.replace(/^#/, '');
+    if (!hash) return;
+    hash.split('&').forEach(function(pair) {
+      var kv = pair.split('=');
+      if (kv[0] === 'gren' && kv[1]) activeGren = decodeURIComponent(kv[1]);
+      if (kv[0] === 'sted' && kv[1]) activeSted = decodeURIComponent(kv[1]);
+    });
+  }
+
+  function writeHash() {
+    var parts = [];
+    if (activeGren && activeGren !== 'alle') parts.push('gren=' + encodeURIComponent(activeGren));
+    if (activeSted && activeSted !== 'alle') parts.push('sted=' + encodeURIComponent(activeSted));
+    var newHash = parts.length ? '#' + parts.join('&') : '';
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search + newHash);
+    }
+  }
+
+  function syncButtons(btns, attr, active) {
+    btns.forEach(function(b) {
+      var isActive = b.getAttribute(attr) === active;
+      b.classList.toggle('treningsfilter__btn--active', isActive);
+      b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  function applyFilters() {
+    var rows = document.querySelectorAll('.arr-tabell:not(.arr-tabell--past) tbody tr');
+    rows.forEach(function(row) {
+      var rowGren = row.getAttribute('data-gren');
+      var rowSted = row.getAttribute('data-sted');
+      var matchGren = (activeGren === 'alle' || rowGren === activeGren);
+      var matchSted = (activeSted === 'alle' || rowSted === activeSted);
+      row.style.display = (matchGren && matchSted) ? '' : 'none';
+    });
+  }
+
+  grenBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      activeGren = btn.getAttribute('data-filter-gren');
+      syncButtons(grenBtns, 'data-filter-gren', activeGren);
+      writeHash();
+      applyFilters();
+    });
+  });
+
+  stedBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      activeSted = btn.getAttribute('data-filter-sted');
+      syncButtons(stedBtns, 'data-filter-sted', activeSted);
+      writeHash();
+      applyFilters();
+    });
+  });
+
+  // Init from URL hash on load
+  parseHash();
+  syncButtons(grenBtns, 'data-filter-gren', activeGren);
+  syncButtons(stedBtns, 'data-filter-sted', activeSted);
+  applyFilters();
+})();
+</script>
+
+{{ end }}

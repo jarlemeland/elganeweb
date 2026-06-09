@@ -1,0 +1,4 @@
+{{/* Shortcode: arrangementer — embed events calendar in any page */}}
+{{ $gren := .Get "gren" | default "" }}
+{{ $sted := .Get "sted" | default "" }}
+{{ partial "arrangementer.html" (dict "context" . "gren" $gren "sted" $sted) }}

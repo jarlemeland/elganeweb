@@ -1,0 +1,49 @@
+{{/* Styret (board) partial
+     Renders the board of directors as a responsive card grid.
+     Data source: data/styret.yaml
+*/}}
+
+{{ with hugo.Data.styret }}
+<div class="styret">
+  {{ with .sesong }}<p class="styret__sesong">Styret {{ . }}</p>{{ end }}
+
+  <div class="styret__grid">
+    {{ range .medlemmer }}
+      {{ $grenSlug := "" }}
+      {{ if eq .gren "ATV & Sidevogn" }}{{ $grenSlug = "atv" }}
+      {{ else if eq .gren "MX" }}{{ $grenSlug = "mx" }}
+      {{ else if eq .gren "Speedway" }}{{ $grenSlug = "speedway" }}
+      {{ end }}
+
+      <article class="styret-kort{{ with $grenSlug }} styret-kort--{{ . }}{{ end }}">
+        <p class="styret-kort__verv">{{ .verv }}</p>
+        <h3 class="styret-kort__navn">{{ .navn }}</h3>
+        {{ with .gren }}<p class="styret-kort__gren"><span class="gren-badge gren-badge--{{ $grenSlug }}">{{ . }}</span></p>{{ end }}
+        <ul class="styret-kort__kontakt">
+          {{ with .telefon }}
+          <li>
+            <a href="tel:+47{{ . }}" aria-label="Ring {{ . }}">
+              <span class="styret-kort__ikon" aria-hidden="true">📞</span>
+              {{ . }}
+            </a>
+          </li>
+          {{ end }}
+          {{ with .epost }}
+          <li>
+            <a href="mailto:{{ . }}" aria-label="Send e-post til {{ . }}">
+              <span class="styret-kort__ikon" aria-hidden="true">✉️</span>
+              {{ . }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+        {{ with .merknad }}<p class="styret-kort__merknad">{{ . }}</p>{{ end }}
+      </article>
+    {{ end }}
+  </div>
+
+  {{ with .oppdatert }}
+  <p class="styret__oppdatert">Sist oppdatert: {{ . }}</p>
+  {{ end }}
+</div>
+{{ end }}

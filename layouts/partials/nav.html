@@ -1,8 +1,12 @@
 <nav id="main-nav" class="nav-menu" aria-label="Hovedmeny">
   <ul class="nav-list">
     {{ range .Site.Menus.main }}
+    {{/* IsMenuCurrent doesn't trigger for the home page in Hugo, so match URL="/" explicitly */}}
+    {{ $isCurrent := or ($.IsMenuCurrent "main" .) (and $.IsHome (eq .URL "/")) }}
+    {{ $hasCurrent := $.HasMenuCurrent "main" . }}
     <li class="nav-item">
-      <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} nav-link--active{{ end }}{{ if $.HasMenuCurrent "main" . }} nav-link--active{{ end }}"
+      <a href="{{ .URL }}" class="nav-link{{ if or $isCurrent $hasCurrent }} nav-link--active{{ end }}"
+         {{ if $isCurrent }}aria-current="page"{{ else if $hasCurrent }}aria-current="true"{{ end }}
          {{ if .HasChildren }}aria-haspopup="true"{{ end }}>
         {{ .Name }}
       </a>

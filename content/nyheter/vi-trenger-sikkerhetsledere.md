@@ -6,6 +6,8 @@ kategorier:
   - "Nyheter"
 image: ""
 draft: false
+aliases:
+  - /nyheter/vi-trenger-sikringsledere/
 ---
 
 Elgane Motorsykkelklubb trenger flere godkjente sikkerhetsledere for sesongen 2026!

@@ -6,9 +6,9 @@ color: "#8B5E3C"
 treningsdager: "Mandager og onsdager"
 treningstid: "17:00 – 20:00"
 sesong: "Mai – September"
-kontaktperson: "[Navn]"
-kontaktepost: "[epost]"
-kontakttelefon: "[nummer]"
+kontaktperson: "Nils Jarle Aanestad"
+kontaktepost: "nilsjaa@icloud.com"
+kontakttelefon: "95930965"
 image: ""
 ---
 
@@ -33,9 +33,9 @@ Speedway er motorsykkelløp på en oval grusbane. Motorsyklene har ingen gir og 
 ## Vår speedwaybane
 
 Elgane har egen speedwaybane med:
-- Lengde: [ca. XXX meter]
+- Lengde: ca. 286m
 - Godt vedlikeholdt grus/shale-underlag
-- Sikkerhetsnett rundt banen
+- Sikkerhetsputer rundt banen
 - Tilskuerområde
 
 Banen prepareres regelmessig for best mulig kjøreforhold.
@@ -138,6 +138,11 @@ Speedway-klubbmesterskap arrangeres årlig med heats, poengsamling og premiering
 
 Mange speedwaykjørere trener kun for gleden – du velger selv!
 
+## Se også
+
+- [Kommende Speedway-arrangementer →](/arrangementer/#gren=speedway)
+- [Treningsplan for Speedway →](/treningsplan/#gren=speedway)
+
 ## Sikkerhet
 
 **Sikkerhetsledere:**
@@ -168,9 +173,9 @@ Nei, mange trener kun for gleden. Speedway er gøy også uten konkurranser!
 
 ## Kontakt Speedway-ansvarlig
 
-**[Navn på speedway-ansvarlig]**
-- Telefon: [nummer]
-- E-post: [epost]
+**Nils Jarle Aanestad**
+- Telefon: 95930965
+- E-post: nilsjaa@icloud.com
 
 Eller bruk [kontaktskjemaet](/kontakt/) på nettsiden.
 

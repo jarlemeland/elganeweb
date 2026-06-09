@@ -63,6 +63,8 @@
   --container-narrow: 800px;
   --border-radius: 8px;
   --border-radius-sm: 4px;
+  --radius: var(--border-radius); /* alias for legacy usages */
+  --color-border: #e0e0e0;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
   --transition: 0.2s ease;
@@ -106,6 +108,17 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
+}
+
+/* Project-wide keyboard focus ring — visible for keyboard nav, hidden for mouse */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
 }
 
 /* --------------------------------------------------------------------------
@@ -422,6 +435,85 @@ hr {
 }
 
 /* --------------------------------------------------------------------------
+   6b. Video Banner
+   -------------------------------------------------------------------------- */
+.video-banner {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.video-banner__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.video-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, 0.15) 0%,
+    rgba(26, 26, 26, 0.05) 50%,
+    rgba(26, 26, 26, 0.25) 100%
+  );
+  z-index: 1;
+}
+
+.video-banner__toggle {
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(26, 26, 26, 0.65);
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.video-banner__toggle:hover {
+  background-color: rgba(26, 26, 26, 0.85);
+  transform: scale(1.08);
+}
+
+.video-banner__toggle-icon {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .video-banner {
+    height: 35vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-banner__video {
+    display: none;
+  }
+  .video-banner {
+    background: url('/video/hero-bg-poster.jpg') center/cover no-repeat;
+  }
+}
+
+/* --------------------------------------------------------------------------
    7. Buttons
    -------------------------------------------------------------------------- */
 .btn {
@@ -734,6 +826,233 @@ hr {
   .treningstabell tr[data-gren="speedway"] { border-left-color: var(--color-speedway); }
 
   .treningstabell tr[data-gren] td:first-child {
+    border-left: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9b. Events Calendar (Arrangementer)
+   -------------------------------------------------------------------------- */
+.arr-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.arr-filter__group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.arr-filter__label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  min-width: 3.5em;
+}
+
+.arr-tabell-wrapper {
+  overflow-x: auto;
+  margin: var(--space-xl) 0;
+}
+
+.arr-tabell {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.arr-tabell th {
+  background-color: var(--color-dark);
+  color: var(--color-text-light);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: var(--space-md);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.arr-tabell td {
+  padding: var(--space-md);
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.arr-tabell tbody tr:hover {
+  background-color: var(--color-bg-light);
+}
+
+/* Discipline color indicator — left border */
+.arr-tabell tr[data-gren="atv"] td:first-child {
+  border-left: 4px solid var(--color-atv);
+}
+
+.arr-tabell tr[data-gren="mx"] td:first-child {
+  border-left: 4px solid var(--color-mx);
+}
+
+.arr-tabell tr[data-gren="speedway"] td:first-child {
+  border-left: 4px solid var(--color-speedway);
+}
+
+/* Date display */
+.arr-dato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.arr-dato__day {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+}
+
+.arr-dato__month {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.arr-tid {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+  text-align: center;
+}
+
+/* Event name and description */
+.arr-navn {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+}
+
+.arr-beskrivelse {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.arr-merknad {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-warning);
+  font-style: italic;
+  margin-top: var(--space-xs);
+}
+
+/* Link / signup button */
+.arr-lenke-btn {
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  padding: var(--space-xs) var(--space-md);
+}
+
+/* Planlagt status badge */
+.status-badge--planlagt {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+/* Past events collapsible */
+.arr-past {
+  margin-top: var(--space-2xl);
+}
+
+.arr-past__toggle {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--space-md) 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.arr-past__toggle:hover {
+  color: var(--color-primary);
+}
+
+.arr-tabell--past {
+  opacity: 0.7;
+}
+
+.arr-tabell--past tbody tr:hover {
+  opacity: 1;
+}
+
+/* Responsive events table */
+@media (max-width: 768px) {
+  .arr-tabell thead {
+    display: none;
+  }
+
+  .arr-tabell tbody tr {
+    display: block;
+    margin-bottom: var(--space-md);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+  }
+
+  .arr-tabell td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+    padding: var(--space-xs) 0;
+  }
+
+  .arr-tabell td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-text-heading);
+    margin-right: var(--space-md);
+  }
+
+  .arr-tabell td[data-label=""]::before {
+    display: none;
+  }
+
+  .arr-tabell td[data-label="Dato"] {
+    border-bottom: 1px solid #eee;
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .arr-dato {
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
+
+  .arr-lenke-cell {
+    justify-content: flex-end;
+    padding-top: var(--space-sm);
+  }
+
+  .arr-tabell tr[data-gren="atv"],
+  .arr-tabell tr[data-gren="mx"],
+  .arr-tabell tr[data-gren="speedway"] {
+    border-left-width: 4px;
+    border-left-style: solid;
+  }
+
+  .arr-tabell tr[data-gren="atv"] { border-left-color: var(--color-atv); }
+  .arr-tabell tr[data-gren="mx"] { border-left-color: var(--color-mx); }
+  .arr-tabell tr[data-gren="speedway"] { border-left-color: var(--color-speedway); }
+
+  .arr-tabell tr[data-gren] td:first-child {
     border-left: none;
   }
 }
@@ -1182,6 +1501,138 @@ hr {
   height: 1px !important;
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
+}
+
+/* Training row: cancelled state and inline merknad */
+.trening-rad--avlyst td {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.trening-rad--avlyst .status-badge,
+.trening-rad--avlyst .gren-badge,
+.trening-rad--avlyst .trening-merknad {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.trening-merknad {
+  display: inline;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   21. Styret (Board of Directors)
+   -------------------------------------------------------------------------- */
+.styret {
+  margin: var(--space-xl) 0;
+}
+
+.styret__sesong {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.styret__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.styret-kort {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.styret-kort:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.styret-kort--atv { border-left-color: var(--color-atv); }
+.styret-kort--mx { border-left-color: var(--color-mx); }
+.styret-kort--speedway { border-left-color: var(--color-speedway); }
+
+.styret-kort__verv {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.styret-kort__navn {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-sm) 0;
+  line-height: 1.3;
+}
+
+.styret-kort__gren {
+  margin: 0 0 var(--space-md) 0;
+}
+
+.styret-kort__kontakt {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.styret-kort__kontakt li {
+  margin-bottom: var(--space-xs);
+}
+
+.styret-kort__kontakt a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  word-break: break-word;
+}
+
+.styret-kort__kontakt a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.styret-kort__ikon {
+  flex-shrink: 0;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.styret-kort__merknad {
+  margin: var(--space-md) 0 0 0;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border, #eee);
+  font-size: var(--font-size-xs);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.styret__oppdatert {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: right;
+  margin: 0;
 }
 
 /* --------------------------------------------------------------------------
