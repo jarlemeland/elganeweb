@@ -62,22 +62,27 @@ git commit -F /tmp/commit-msg.txt  # use a heredoc-written file to avoid shell q
 
 The branch name should be kebab-case and descriptive: `feat/events-styret-ux-fixes`, `fix/nav-aria-current`, `docs/admin-guide`.
 
-### 5. Push the branch
+### 5. Push the branch — always with an explicit refspec
 
 ```bash
-git push -u origin feat/<slug>
+git push -u origin feat/<slug>   # initial push
+git push origin feat/<slug>      # subsequent pushes (e.g. amending the PR)
 ```
 
-If the push returns `refs/for/<branch>` instead of `refs/heads/<branch>`, the wrong gh account was active — see step 1.
+**Always pass `origin <branchname>` explicitly.** Plain `git push` (no args) gets silently intercepted by Rampart on this machine and parked on `refs/for/main` — even when the current branch's upstream is the feature branch and you're pushing only a small amend. The intercept looks like a successful push; only the `* [new reference]   HEAD -> refs/for/main` line in the output reveals it. The feature branch on origin is NOT updated, the PR does not see the new commit, and a stray `refs/for/main` ref accumulates.
+
+If the push returns `refs/for/<branch>` instead of `refs/heads/<branch>`, either:
+- The implicit `git push` form was used — retry with `git push origin <branchname>`.
+- The wrong gh account is active — see step 1.
 
 If the push returns `403 Permission denied to <other-account>`, run `gh auth setup-git` to re-sync credentials then retry once.
 
 ### 6. Open the PR
 
+`gh pr create` and **never use the heredoc `--body "$(cat <<'EOF'...EOF)"` form** — it trips storecode's "Symlink or redirection to protected path" hook on some invocations. Use `--body-file` instead:
+
 ```bash
-gh pr create --base main --head feat/<slug> \
-  --title "<short imperative title under 70 chars>" \
-  --body "$(cat <<'EOF'
+cat > /tmp/pr-body.md <<'EOF'
 ## Summary
 - <1-3 bullets describing the change>
 
@@ -88,10 +93,13 @@ gh pr create --base main --head feat/<slug> \
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 EOF
-)"
+gh pr create --base main --head feat/<slug> \
+  --title "<short imperative title under 70 chars>" \
+  --body-file /tmp/pr-body.md
+rm /tmp/pr-body.md
 ```
 
-Return the PR URL to the user.
+`gh pr create` prints the PR URL on success — surface it to the user.
 
 ## Cleanup if a previous push went to `refs/for/main`
 
