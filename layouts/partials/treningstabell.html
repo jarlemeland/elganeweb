@@ -44,6 +44,11 @@
     {{ range $rule := $cfg.regler }}
       {{/* Skip if filtering by gren and this rule doesn't match */}}
       {{ if or (eq $grenFilter "") (eq $grenFilter $rule.gren) }}
+        {{/* Per-rule sesong bounds (optional). Falls back to global. */}}
+        {{ $ruleStart := $rule.sesongstart | default $cfg.sesongstart }}
+        {{ $ruleEnd := $rule.sesongslutt | default $cfg.sesongslutt }}
+        {{ $inRange := and (ge $dateStr $ruleStart) (le $dateStr $ruleEnd) }}
+        {{ if $inRange }}
         {{ range $okt := $rule.okter }}
           {{ if eq (int $okt.ukedag) $weekday }}
             {{/* Base entry from rule */}}
@@ -72,6 +77,7 @@
 
             {{ $upcoming = $upcoming | append $entry }}
           {{ end }}
+        {{ end }}
         {{ end }}
       {{ end }}
     {{ end }}
@@ -116,6 +122,7 @@
           <th>Dato</th>
           <th>Tid</th>
           <th>Gren</th>
+          <th>Sikkerhetsleder</th>
         </tr>
       </thead>
       <tbody>
@@ -139,6 +146,9 @@
           <td data-label="Tid">{{ .tid_start }}–{{ .tid_slutt }}</td>
           <td data-label="Gren">
             <span class="gren-badge gren-badge--{{ $grenSlug }}">{{ .gren }}</span>
+          </td>
+          <td data-label="Sikkerhetsleder">
+            {{ if .sikkerhetsleder }}{{ .sikkerhetsleder }}{{ else if ne .status "avlyst" }}<span class="trening-trenger-sl">Trenger sikkerhetsleder</span>{{ end }}
           </td>
         </tr>
         {{ end }}

@@ -233,6 +233,8 @@ collections:
                   - "ATV & Sidevogn"
                   - "MX"
                   - "Speedway"
+              - { label: "Sesongstart (valgfritt)", name: "sesongstart", widget: "string", required: false, default: "", hint: "YYYY-MM-DD — overstyrer global sesongstart for denne grenen" }
+              - { label: "Sesongslutt (valgfritt)", name: "sesongslutt", widget: "string", required: false, default: "", hint: "YYYY-MM-DD — overstyrer global sesongslutt for denne grenen" }
               - label: "Treningsøkter"
                 name: "okter"
                 widget: "list"
